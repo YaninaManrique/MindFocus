@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_cream">
+
+    <!-- ── CONTENIDO PRINCIPAL (scroll) ── -->
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottom_nav"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp">
+
+            <!-- ── HEADER: título + botón + ── -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="45dp">
+
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mis tareas"
+                    android:textSize="26sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_dark"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+                <!-- Botón + agregar tarea -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_add_task"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    android:padding="0dp"
+                    android:text="+"
+                    android:textSize="24sp"
+                    android:textColor="@color/white"
+                    app:backgroundTint="@color/green_primary"
+                    app:cornerRadius="14dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    style="@style/Widget.MaterialComponents.Button"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- ── FILTROS ── -->
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:layout_marginBottom="16dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <!-- Filtro: Todas (activo) -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_filter_all"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:text="Todas"
+                        android:textSize="12sp"
+                        android:textColor="@color/white"
+                        app:backgroundTint="@color/green_primary"
+                        app:cornerRadius="10dp"
+                        android:paddingHorizontal="16dp"
+                        android:layout_marginEnd="8dp"
+                        style="@style/Widget.MaterialComponents.Button"/>
+
+                    <!-- Filtro: Pendientes -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_filter_pending"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:text="Pendientes"
+                        android:textSize="12sp"
+                        android:textColor="@color/text_mid"
+                        app:backgroundTint="@color/white"
+                        app:strokeColor="@color/border_color"
+                        app:strokeWidth="1.5dp"
+                        app:cornerRadius="10dp"
+                        android:paddingHorizontal="16dp"
+                        android:layout_marginEnd="8dp"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+
+                    <!-- Filtro: Completadas -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_filter_done"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:text="Completadas"
+                        android:textSize="12sp"
+                        android:textColor="@color/text_mid"
+                        app:backgroundTint="@color/white"
+                        app:strokeColor="@color/border_color"
+                        app:strokeWidth="1.5dp"
+                        app:cornerRadius="10dp"
+                        android:paddingHorizontal="16dp"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <!-- ── LISTA DE TAREAS ── -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="vertical">
+
+                <!-- ITEM 1 -->
+                <include layout="@layout/item_tareas"/>
+
+                <!-- ITEM 2 -->
+                <include layout="@layout/item_tareas"/>
+
+                <!-- ITEM 4 -->
+                <include layout="@layout/item_tareas"/>
+
+                <!-- ITEM 3 -->
+                <include layout="@layout/item_tareas"/>
+
+                <!-- ITEM 3 -->
+                <include layout="@layout/item_tareas"/>
+
+            </LinearLayout>
+
+            <!-- ── TIP TDAH ── -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/fondo_lila"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="14dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="💜 Tip: Divide las tareas grandes en pasos pequeños. ¡Cada paso cuenta!"
+                    android:textSize="12sp"
+                    android:textColor="@color/purple_dark"
+                    android:lineSpacingMultiplier="1.4"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- ── BOTTOM NAVIGATION ── -->
+    <LinearLayout
+        android:id="@+id/bottom_nav"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/white"
+        android:paddingTop="10dp"
+        android:paddingBottom="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Nav: Inicio -->
+        <LinearLayout
+            android:id="@+id/nav_home"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="4dp">
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_home" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Inicio"
+                android:textSize="12sp"
+                android:textColor="@color/text_dark"
+                android:layout_marginTop="2dp"/>
+        </LinearLayout>
+
+        <!-- Nav: Tareas (activo) -->
+        <LinearLayout
+            android:id="@+id/nav_tasks"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="4dp">
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_tasks" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tareas"
+                android:textSize="12sp"
+                android:textColor="@color/green_primary"
+                android:layout_marginTop="2dp"/>
+            <!-- Indicador activo -->
+            <View
+                android:layout_width="18dp"
+                android:layout_height="3dp"
+                android:background="@drawable/fondo_activo"
+                android:layout_marginTop="3dp"/>
+        </LinearLayout>
+
+        <!-- Nav: Enfoque -->
+        <LinearLayout
+            android:id="@+id/nav_focus"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="4dp">
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_clock" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Enfoque"
+                android:textSize="12sp"
+                android:textColor="@color/text_light"
+                android:layout_marginTop="2dp"/>
+        </LinearLayout>
+
+        <!-- Nav: Logros -->
+        <LinearLayout
+            android:id="@+id/nav_progress"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="4dp">
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_star" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Logros"
+                android:textSize="12sp"
+                android:textColor="@color/text_light"
+                android:layout_marginTop="2dp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- Separador top del bottom nav -->
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/border_color"
+        app:layout_constraintBottom_toTopOf="@id/bottom_nav"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

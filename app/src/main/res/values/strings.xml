@@ -1,0 +1,58 @@
+<resources>
+    <!-- activity_main-->
+    <string name="app_name">MindFocus</string>
+    <string name="eslogan_message">Tu compañero de concentración.
+        \nUn paso a la vez 🌿</string>
+    <string name="todo_text1">✔ Tareas divididas en pasos simples</string>
+    <string name="todo_text2">🎯 Modo enfoque sin distracciones</string>
+    <string name="todo_text3">🏆 Celebra cada pequeño logro</string>
+    <string name="btn_text">¡Comenzar! 🚀</string>
+    <string name="text_cuenta">¿Ya tienes cuenta? Iniciar sesión</string>
+
+    <!-- activity_creartarea-->
+    <string name="text_header">Nueva tarea</string>
+    <string name="text_type_task">¿QUÉ TIPO DE TAREA?</string>
+    <string name="text_study_img">📚</string>
+    <string name="text_study">Estudio</string>
+    <string name="text_exercise_img">🏃</string>
+    <string name="text_exercise">Ejercicio</string>
+    <string name="text_name_task">NOMBRE DE LA TAREA</string>
+    <string name="text_task">Estudiar para el examen</string>
+    <string name="text_urgency">NIVEL DE URGENCIA</string>
+    <string name="text_prioridad1">Normal</string>
+    <string name="text_prioridad2">Media</string>
+    <string name="text_prioridad3">Alta</string>
+    <string name="text_pasos">🪄  Dividir en pasos automáticamente</string>
+    <string name="text_opcional">NOTA RÁPIDA (OPCIONAL)</string>
+    <string name="btn_guardar">Guardar tarea 💾</string>
+
+    <!-- activity_pasostarea-->
+    <string name="text_main_tarea">Hacer ejercicio 20 min</string>
+    <string name="text_steps_complete">1/3 pasos completados</string>
+    <string name="text_steps_missing">Faltan 2 pasos</string>
+    <string name="text_list_steps">Lista de pasos</string>
+    <string name="text_item1">Ponerse ropa deportiva</string>
+    <string name="text_item2">2  Calentar 5 minutos</string>
+    <string name="text_item3">3  Ejercicios principales</string>
+    <string name="btn_text_focus">Activar modo enfoque</string>
+    <string name="text_tip">💪 ¡Toca cada paso al completarlo!</string>
+    <string name="nav_op1">Inicio</string>
+    <string name="nav_op2">Tareas</string>
+    <string name="nav_op3">Enfoque</string>
+    <string name="nav_op4">Logros</string>
+
+    <!-- activity_principal -->
+    <string name="text_welcome">¡Buenos días, Yanina!</string>
+    <string name="text2_activityPri">Progreso de hoy></string>
+    <string name="text3_activityPri">40%</string>
+    <string name="text5_activityPri">TAREA ACTUAL</string>
+    <string name="text6_activityPri">Hacer ejercicio 20 min</string>
+    <string name="btn1_text_activityPri">Empezar ahora</string>
+    <string name="text7_activityPri">Accesos rápidos</string>
+    <string name="text8_tar1_activityPri">Modo enfoque</string>
+    <string name="text9_tar2_activityPri">Mis tareas</string>
+
+
+
+
+</resources>
