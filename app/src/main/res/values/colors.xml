@@ -77,8 +77,27 @@
     <color name="text8_tar1_activityPri">#bab7c8</color>
     <color name="bg_tar2_activityPri">#e8c9bf</color>
     <color name="text9_tar2_activityPri">#bab7c8"</color>
+    <color name="bg_tar3_activityPri">#f8efc8</color>
+    <color name="text10_tar3_activityPri">#bab7c8</color>
+    <color name="bg_tar4_activityPri">#f3efdf</color>
+    <color name="text11_tar4_activityPri">#bab7c8</color>
 
+    <!-- activity_tareas -->
+    <color name="bg_activityTar">#F5F1EB</color>
+    <color name="txt1_activityTar">#2A2A2A</color>
+    <color name="txt2_activityTar">#F4F6F3</color>
+    <color name="bg1_tint_activityTar">#6B9E78</color>
+    <color name="txt3_activityTar">#F5F1EB</color>
+    <color name="filtro1_activityTar">#6B9E78</color>
+    <color name="txt4_activityTar">#F5F1EB</color>
+    <color name="sc_activityTar">#E8E3DA</color>
+    <color name="txt5_activityTar">#F5F1EB</color>
+    <color name="bg2_tint_activityTar">#F5F1EB</color>
+    <color name="purple_dark">#5A4FA0</color>
 
+    <!-- activity_enfoque-->
+    <color name="bg_activityEnf">#F5F1EB</color>
+    <color name="txt1_activityEnf">#101114</color>
 
 
 
@@ -92,7 +111,7 @@
 
     <color name="purple_primary">#8B7EC8</color>
     <color name="purple_light">#EDEBF8</color>
-    <color name="purple_dark">#5A4FA0</color>
+
 
     <color name="yellow_primary">#F5C842</color>
     <color name="yellow_light">#FEF9E7</color>

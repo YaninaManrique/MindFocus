@@ -4,9 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_cream">
+    android:background="@color/bg_activityTar">
 
-    <!-- ── CONTENIDO PRINCIPAL (scroll) ── -->
+    <!-- CONTENIDO PRINCIPAL -->
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollView"
         android:layout_width="0dp"
@@ -25,7 +25,7 @@
             android:paddingTop="16dp"
             android:paddingBottom="16dp">
 
-            <!-- ── HEADER: título + botón + ── -->
+            <!-- HEADER: título + botón  -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -36,10 +36,10 @@
                     android:id="@+id/tv_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Mis tareas"
+                    android:text="@string/txt1_activityTar"
                     android:textSize="26sp"
                     android:textStyle="bold"
-                    android:textColor="@color/text_dark"
+                    android:textColor="@color/txt1_activityTar"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"/>
@@ -47,24 +47,23 @@
                 <!-- Botón + agregar tarea -->
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_add_task"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:insetTop="0dp"
-                    android:insetBottom="0dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:padding="0dp"
-                    android:text="+"
+                    android:insetBottom="0dp"
+                    android:text="@string/txt2_activityTar"
                     android:textSize="24sp"
-                    android:textColor="@color/white"
-                    app:backgroundTint="@color/green_primary"
+                    android:textColor="@color/txt2_activityTar"
+                    app:backgroundTint="@color/bg1_tint_activityTar"
                     app:cornerRadius="14dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    style="@style/Widget.MaterialComponents.Button"/>
+                    style="@style/Widget.MaterialComponents.Button.Icon"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <!-- ── FILTROS ── -->
+            <!-- FILTROS -->
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -84,10 +83,10 @@
                         android:layout_height="36dp"
                         android:insetTop="0dp"
                         android:insetBottom="0dp"
-                        android:text="Todas"
+                        android:text="@string/txt3_activityTar"
                         android:textSize="12sp"
-                        android:textColor="@color/white"
-                        app:backgroundTint="@color/green_primary"
+                        android:textColor="@color/txt3_activityTar"
+                        app:backgroundTint="@color/filtro1_activityTar"
                         app:cornerRadius="10dp"
                         android:paddingHorizontal="16dp"
                         android:layout_marginEnd="8dp"
@@ -100,11 +99,11 @@
                         android:layout_height="36dp"
                         android:insetTop="0dp"
                         android:insetBottom="0dp"
-                        android:text="Pendientes"
+                        android:text="@string/txt4_activityTar"
                         android:textSize="12sp"
                         android:textColor="@color/text_mid"
-                        app:backgroundTint="@color/white"
-                        app:strokeColor="@color/border_color"
+                        app:backgroundTint="@color/txt4_activityTar"
+                        app:strokeColor="@color/sc_activityTar"
                         app:strokeWidth="1.5dp"
                         app:cornerRadius="10dp"
                         android:paddingHorizontal="16dp"
@@ -118,20 +117,21 @@
                         android:layout_height="36dp"
                         android:insetTop="0dp"
                         android:insetBottom="0dp"
-                        android:text="Completadas"
+                        android:text="@string/txt5_activityTar"
                         android:textSize="12sp"
                         android:textColor="@color/text_mid"
-                        app:backgroundTint="@color/white"
-                        app:strokeColor="@color/border_color"
+                        app:backgroundTint="@color/bg2_tint_activityTar"
+                        app:strokeColor="@color/sc_activityTar"
                         app:strokeWidth="1.5dp"
                         app:cornerRadius="10dp"
                         android:paddingHorizontal="16dp"
                         style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
 
                 </LinearLayout>
+
             </HorizontalScrollView>
 
-            <!-- ── LISTA DE TAREAS ── -->
+            <!-- LISTA DE TAREAS -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -155,7 +155,7 @@
 
             </LinearLayout>
 
-            <!-- ── TIP TDAH ── -->
+            <!-- TIP TDAH -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -168,7 +168,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="💜 Tip: Divide las tareas grandes en pasos pequeños. ¡Cada paso cuenta!"
+                    android:text="@string/txt6_activityTar"
                     android:textSize="12sp"
                     android:textColor="@color/purple_dark"
                     android:lineSpacingMultiplier="1.4"/>
@@ -176,9 +176,10 @@
             </LinearLayout>
 
         </LinearLayout>
+
     </androidx.core.widget.NestedScrollView>
 
-    <!-- ── BOTTOM NAVIGATION ── -->
+    <!-- ── BOTTOM NAVIGATION ──
     <LinearLayout
         android:id="@+id/bottom_nav"
         android:layout_width="0dp"
@@ -191,7 +192,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <!-- Nav: Inicio -->
+
         <LinearLayout
             android:id="@+id/nav_home"
             android:layout_width="0dp"
@@ -213,7 +214,7 @@
                 android:layout_marginTop="2dp"/>
         </LinearLayout>
 
-        <!-- Nav: Tareas (activo) -->
+
         <LinearLayout
             android:id="@+id/nav_tasks"
             android:layout_width="0dp"
@@ -233,7 +234,7 @@
                 android:textSize="12sp"
                 android:textColor="@color/green_primary"
                 android:layout_marginTop="2dp"/>
-            <!-- Indicador activo -->
+
             <View
                 android:layout_width="18dp"
                 android:layout_height="3dp"
@@ -241,7 +242,7 @@
                 android:layout_marginTop="3dp"/>
         </LinearLayout>
 
-        <!-- Nav: Enfoque -->
+
         <LinearLayout
             android:id="@+id/nav_focus"
             android:layout_width="0dp"
@@ -263,7 +264,7 @@
                 android:layout_marginTop="2dp"/>
         </LinearLayout>
 
-        <!-- Nav: Logros -->
+
         <LinearLayout
             android:id="@+id/nav_progress"
             android:layout_width="0dp"
@@ -283,9 +284,15 @@
                 android:textSize="12sp"
                 android:textColor="@color/text_light"
                 android:layout_marginTop="2dp"/>
-        </LinearLayout>
-
-    </LinearLayout>
+        </LinearLayout>-->
+    <include
+        android:id="@+id/bottom_nav"
+        layout="@layout/bottom_navigation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <!-- Separador top del bottom nav -->
     <View

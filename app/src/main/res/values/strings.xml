@@ -40,6 +40,7 @@
     <string name="nav_op2">Tareas</string>
     <string name="nav_op3">Enfoque</string>
     <string name="nav_op4">Logros</string>
+    <string name="text_cir">33%</string>
 
     <!-- activity_principal -->
     <string name="text_welcome">¡Buenos días, Yanina!</string>
@@ -51,6 +52,25 @@
     <string name="text7_activityPri">Accesos rápidos</string>
     <string name="text8_tar1_activityPri">Modo enfoque</string>
     <string name="text9_tar2_activityPri">Mis tareas</string>
+    <string name="text10_tar3_activityPri">Nueva tarea</string>
+    <string name="text11_tar4_activityPri">Mis logros</string>
+
+    <!-- activity_tareas -->
+    <string name="txt1_activityTar">Mis tareas</string>
+    <string name="txt2_activityTar">+</string>
+    <string name="txt3_activityTar">Todas</string>
+    <string name="txt4_activityTar">Pendientes</string>
+    <string name="txt5_activityTar">Completadas</string>
+    <string name="txt6_activityTar">💜 Tip: Divide las tareas grandes en pasos pequeños. ¡Cada paso cuenta!</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <!-- activity_enfoque-->
+    <string name="txt1_activityEnf">Modo enfoque</string>
+    <string name="txt2_activityEnf">🎯</string>
 
 
 

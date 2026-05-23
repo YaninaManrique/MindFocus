@@ -62,7 +62,7 @@
 
                 <!-- CIRCULO -->
                 <TextView
-                    android:text="33%"
+                    android:text="@string/text_cir"
                     android:textColor="@color/text_circle"
                     android:textStyle="bold"
                     android:background="@drawable/ic_count"
@@ -82,7 +82,7 @@
                         android:text="@string/text_steps_complete"
                         android:textColor="@color/text_circle_complete"
                         android:textStyle="bold"
-                        android:textSize="20dp"/>
+                        android:textSize="20sp"/>
 
                     <TextView
                         android:layout_width="match_parent"
@@ -185,116 +185,14 @@
 
     </ScrollView>
 
-        <!-- ── BOTTOM NAVIGATION ── -->
-        <LinearLayout
-            android:id="@+id/bottom_nav"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:background="@color/btn_bg_navigation"
-            android:paddingTop="10dp"
-            android:paddingBottom="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-
-            <!-- Nav: Inicio -->
-            <LinearLayout
-                android:id="@+id/nav_home"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:padding="4dp">
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_home" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/nav_op1"
-                    android:textSize="12sp"
-                    android:textColor="@color/text_inicio"
-                    android:layout_marginTop="2dp"/>
-            </LinearLayout>
-
-            <!-- Nav: Tareas (activo) -->
-            <LinearLayout
-                android:id="@+id/nav_tasks"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:padding="4dp">
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_tasks" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/nav_op2"
-                    android:textSize="12sp"
-                    android:textColor="@color/nav_op2"
-                    android:layout_marginTop="2dp"/>
-                <!-- Indicador activo -->
-                <View
-                    android:layout_width="18dp"
-                    android:layout_height="3dp"
-                    android:background="@drawable/fondo_activo"
-                    android:layout_marginTop="3dp"/>
-            </LinearLayout>
-
-            <!-- Nav: Enfoque -->
-            <LinearLayout
-                android:id="@+id/nav_focus"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:padding="4dp">
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_clock" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/nav_op3"
-                    android:textSize="12sp"
-                    android:textColor="@color/nav_op3"
-                    android:layout_marginTop="2dp"/>
-            </LinearLayout>
-
-            <!-- Nav: Logros -->
-            <LinearLayout
-                android:id="@+id/nav_progress"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:padding="4dp">
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_star" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/nav_op4"
-                    android:textSize="12sp"
-                    android:textColor="@color/nav_op4"
-                    android:layout_marginTop="2dp"/>
-            </LinearLayout>
-
-
-
-    </LinearLayout>
+    <include
+        android:id="@+id/bottom_nav"
+        layout="@layout/bottom_navigation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

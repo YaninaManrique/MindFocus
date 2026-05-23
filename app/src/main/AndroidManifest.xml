@@ -12,6 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MindFocus">
         <activity
+            android:name=".activity_enfoque"
+            android:exported="false"
+            android:theme="@style/Theme.MindFocus" />
+        <activity
             android:name=".activity_tareas"
             android:exported="false" />
         <activity
