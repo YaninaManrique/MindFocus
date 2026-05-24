@@ -12,23 +12,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MindFocus">
         <activity
-            android:name=".activity_enfoque"
+            android:name=".EnfoqueFragment"
             android:exported="false"
             android:theme="@style/Theme.MindFocus" />
         <activity
-            android:name=".activity_tareas"
+            android:name=".TareasFragment"
             android:exported="false" />
         <activity
             android:name=".activity_creartarea"
             android:exported="false" />
         <activity
-            android:name=".activity_principal"
+            android:name=".ActivityPrincipal"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activity_pasostarea"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

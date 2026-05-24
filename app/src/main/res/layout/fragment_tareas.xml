@@ -6,16 +6,9 @@
     android:layout_height="match_parent"
     android:background="@color/bg_activityTar">
 
-    <!-- CONTENIDO PRINCIPAL -->
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/scrollView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:fillViewport="true"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/bottom_nav"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -177,130 +170,6 @@
 
         </LinearLayout>
 
-    </androidx.core.widget.NestedScrollView>
-
-    <!-- ── BOTTOM NAVIGATION ──
-    <LinearLayout
-        android:id="@+id/bottom_nav"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@color/white"
-        android:paddingTop="10dp"
-        android:paddingBottom="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-
-        <LinearLayout
-            android:id="@+id/nav_home"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:padding="4dp">
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_home" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Inicio"
-                android:textSize="12sp"
-                android:textColor="@color/text_dark"
-                android:layout_marginTop="2dp"/>
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:id="@+id/nav_tasks"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:padding="4dp">
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_tasks" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Tareas"
-                android:textSize="12sp"
-                android:textColor="@color/green_primary"
-                android:layout_marginTop="2dp"/>
-
-            <View
-                android:layout_width="18dp"
-                android:layout_height="3dp"
-                android:background="@drawable/fondo_activo"
-                android:layout_marginTop="3dp"/>
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:id="@+id/nav_focus"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:padding="4dp">
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_clock" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Enfoque"
-                android:textSize="12sp"
-                android:textColor="@color/text_light"
-                android:layout_marginTop="2dp"/>
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:id="@+id/nav_progress"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:padding="4dp">
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_star" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Logros"
-                android:textSize="12sp"
-                android:textColor="@color/text_light"
-                android:layout_marginTop="2dp"/>
-        </LinearLayout>-->
-    <include
-        android:id="@+id/bottom_nav"
-        layout="@layout/bottom_navigation"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
-    <!-- Separador top del bottom nav -->
-    <View
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:background="@color/border_color"
-        app:layout_constraintBottom_toTopOf="@id/bottom_nav"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
