@@ -2,15 +2,19 @@ package com.diacode.mindfocus;
 
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 
-public class activity_enfoque extends AppCompatActivity {
+public class EnfoqueFragment extends Fragment {
 
     // --- Timer modes (in milliseconds) ---
     private static final long POMODORO_DURATION = 25 * 60 * 1000L;
@@ -32,28 +36,29 @@ public class activity_enfoque extends AppCompatActivity {
     private long totalDuration  = POMODORO_DURATION;
     private long timeLeftMillis = POMODORO_DURATION;
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_enfoque);
-
-        bindViews();
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_enfoque, container, false);
+        bindViews(view);
         setupTabListeners();
         setupButtonListeners();
         updateTimerDisplay(timeLeftMillis);
-        startTimer(); // auto-start like the screenshot
+        startTimer();
+
+        return view; // auto-start like the screenshot
     }
 
-    private void bindViews() {
-        timerCircleView      = findViewById(R.id.timerCircleView);
-        tvTimer              = findViewById(R.id.tvTimer);
-        tvFocusLabel         = findViewById(R.id.tvFocusLabel);
-        tabPomodoro          = findViewById(R.id.tabPomodoro);
-        tabCorto             = findViewById(R.id.tabCorto);
-        tabMini              = findViewById(R.id.tabMini);
-        btnReiniciar         = findViewById(R.id.btnReiniciar);
-        btnPausar            = findViewById(R.id.btnPausar);
-        btnCambiarDescanso   = findViewById(R.id.btnCambiarDescanso);
+    private void bindViews(View view) {
+        timerCircleView      = view.findViewById(R.id.timerCircleView);
+        tvTimer              = view.findViewById(R.id.tvTimer);
+        tvFocusLabel         = view.findViewById(R.id.tvFocusLabel);
+        tabPomodoro          = view.findViewById(R.id.tabPomodoro);
+        tabCorto             = view.findViewById(R.id.tabCorto);
+        tabMini              = view.findViewById(R.id.tabMini);
+        btnReiniciar         = view.findViewById(R.id.btnReiniciar);
+        btnPausar            = view.findViewById(R.id.btnPausar);
+        btnCambiarDescanso   = view.findViewById(R.id.btnCambiarDescanso);
     }
 
     // -------------------------------------------------------------------------
@@ -80,13 +85,13 @@ public class activity_enfoque extends AppCompatActivity {
 
     private void selectTab(TextView selected, TextView other1, TextView other2) {
         selected.setBackgroundResource(R.drawable.bg_tab_selected);
-        selected.setTextColor(ContextCompat.getColor(this, R.color.white));
+        selected.setTextColor(ContextCompat.getColor(requireContext(), R.color.white));
 
         other1.setBackgroundColor(android.graphics.Color.TRANSPARENT);
-        other1.setTextColor(ContextCompat.getColor(this, R.color.tab_text_unselected));
+        other1.setTextColor(ContextCompat.getColor(requireContext(), R.color.tab_text_unselected));
 
         other2.setBackgroundColor(android.graphics.Color.TRANSPARENT);
-        other2.setTextColor(ContextCompat.getColor(this, R.color.tab_text_unselected));
+        other2.setTextColor(ContextCompat.getColor(requireContext(), R.color.tab_text_unselected));
     }
 
     // -------------------------------------------------------------------------
@@ -138,7 +143,7 @@ public class activity_enfoque extends AppCompatActivity {
                 updateTimerDisplay(0);
                 timerCircleView.setProgress(0f);
                 btnPausar.setText("▶ Iniciar");
-                Toast.makeText(activity_enfoque.this,
+                Toast.makeText(requireContext(),
                         isBreakMode ? "¡Descanso terminado! 💪" : "¡Tiempo de enfoque completado! 🎉",
                         Toast.LENGTH_LONG).show();
             }
@@ -187,8 +192,8 @@ public class activity_enfoque extends AppCompatActivity {
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    public void onDestroyView() {
+        super.onDestroyView();
         if (countDownTimer != null) countDownTimer.cancel();
     }
 }

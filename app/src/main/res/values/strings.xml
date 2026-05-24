@@ -71,7 +71,9 @@
     <!-- activity_enfoque-->
     <string name="txt1_activityEnf">Modo enfoque</string>
     <string name="txt2_activityEnf">🎯</string>
-
+    <string name="lorem_ipsum">Lorem ipsum</string>
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 
