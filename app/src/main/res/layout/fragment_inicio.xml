@@ -13,7 +13,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="45dp"
             android:orientation="vertical"
             android:padding="30dp">
 
@@ -38,14 +38,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/text2_activityPri"
-                    android:textColor="@color/text2_activityPri"/>
+                    android:textColor="@color/white"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/text3_activityPri"
                     android:textSize="28sp"
-                    android:textColor="@color/text3_activityPri"/>
+                    android:textColor="@color/white"/>
 
                 <ProgressBar
                     android:layout_width="match_parent"
