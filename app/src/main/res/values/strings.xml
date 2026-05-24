@@ -44,7 +44,7 @@
 
     <!-- activity_principal -->
     <string name="text_welcome">¡Buenos días, Yanina!</string>
-    <string name="text2_activityPri">Progreso de hoy></string>
+    <string name="text2_activityPri">Progreso de hoy</string>
     <string name="text3_activityPri">40%</string>
     <string name="text5_activityPri">TAREA ACTUAL</string>
     <string name="text6_activityPri">Hacer ejercicio 20 min</string>
