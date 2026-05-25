@@ -52,6 +52,7 @@ public class ActivityPrincipal extends AppCompatActivity {
         LinearLayout navTasks    = findViewById(R.id.nav_tasks);
         LinearLayout navFocus    = findViewById(R.id.nav_focus);
         LinearLayout navProgress = findViewById(R.id.nav_progress);
+        LinearLayout navProfile = findViewById(R.id.nav_perfil);
 
         navHome.setOnClickListener(v ->
                 cargarFragment(new InicioFragment()));
@@ -61,9 +62,11 @@ public class ActivityPrincipal extends AppCompatActivity {
 
         navFocus.setOnClickListener(v ->
                 cargarFragment(new EnfoqueFragment()));
-//
+
 //        navProgress.setOnClickListener(v ->
 //                cargarFragment(new LogrosFragment()));
+        navProfile.setOnClickListener(v ->
+                cargarFragment(new PerfilFragment()));
     }
 
     private void cargarFragment(Fragment fragment) {

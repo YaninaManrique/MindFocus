@@ -40,10 +40,11 @@
     <string name="nav_op2">Tareas</string>
     <string name="nav_op3">Enfoque</string>
     <string name="nav_op4">Logros</string>
+    <string name="nav_op5">Perfil</string>
     <string name="text_cir">33%</string>
 
     <!-- activity_principal -->
-    <string name="text_welcome">¡Buenos días, Yanina!</string>
+    <string name="text_welcome">¡Bienvenida, Yanina!</string>
     <string name="text2_activityPri">Progreso de hoy</string>
     <string name="text3_activityPri">40%</string>
     <string name="text5_activityPri">TAREA ACTUAL</string>

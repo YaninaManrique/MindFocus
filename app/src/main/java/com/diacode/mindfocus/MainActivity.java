@@ -2,6 +2,7 @@ package com.diacode.mindfocus;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -24,18 +25,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+
+        //para ver si tiene una sesion activa
+        SharedPreferences prefs = getSharedPreferences("MindFocusPrefs", MODE_PRIVATE);
+        boolean sesionActiva = prefs.getBoolean("sesionActiva", false);
+
         //buscamos el button del xml
         btnStart = findViewById(R.id.btnStart);
-        btnStart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //redirige de una pantalla a otra por parametro en el intent
-                Intent intent = new Intent(MainActivity.this, ActivityPrincipal.class);
-                startActivity(intent);
+        btnStart.setOnClickListener(v -> {
+            if (sesionActiva) {
+                //si ya tiene sesion va directo al principal
+                startActivity(new Intent(this, ActivityPrincipal.class));
+            } else {
+                //sino va al login
+                startActivity(new Intent(this, LoginActivity.class));
             }
         });
     }
-
-
 
 }

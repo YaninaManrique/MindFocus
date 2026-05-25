@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_main">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="30dp"
+            android:gravity="center_horizontal"
+            android:background="@color/background_soft">
+
+            <!-- icono -->
+            <ImageView
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:src="@drawable/ic_brain"
+                android:layout_marginTop="40dp"/>
+
+            <!-- nombre del usuario -->
+            <TextView
+                android:id="@+id/tvNombrePerfil"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nombre"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_FocusMind"
+                android:layout_marginTop="16dp"/>
+
+            <!-- Email del usuario -->
+            <TextView
+                android:id="@+id/tvEmailPerfil"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="email@ejemplo.com"
+                android:textColor="@color/text_eslogan"
+                android:layout_marginTop="8dp"/>
+
+            <!-- separador -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/text_eslogan"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="32dp"
+                android:alpha="0.2"/>
+
+            <!-- boton cerrar sesion -->
+            <Button
+                android:id="@+id/btnCerrarSesion"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:text="Cerrar sesión"
+                android:backgroundTint="#E53935"
+                android:textColor="@color/white"
+                android:layout_marginTop="16dp"/>
+
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
