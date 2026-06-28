@@ -20,20 +20,20 @@ public class TimerService extends Service {
     private static final int NOTIFICATION_ID = 1;
 
     //timer
-    private CountDownTimer countDownTimer;
+    private CountDownTimer countDownTimer; //para el temporizador regresivo
     private long timeLeftMillis;
     private boolean isRunning = false;
 
     //permite comunicar el fragment con el service
-    private final IBinder binder = new TimerBinder();
+    private final IBinder binder = new TimerBinder(); //Para poder conectar el Fragment con el service
 
     public class TimerBinder extends Binder {
         TimerService getService() {
             return TimerService.this;
-        }
+        } //Retorna instanacia actual del service
     }
     //interfaz para notificar al fragment de los cambios
-    public interface TimerListener {
+    public interface TimerListener { //comunicar el service con el fragment
         void onTimerTick(long millisLeft);
         void onTimerFinish();
     }
@@ -42,17 +42,17 @@ public class TimerService extends Service {
 
     public void setTimerListener(TimerListener listener) {
         this.timerListener = listener;
-    }
+    } //Fragment aqui para escuchar eventos
 
     //ciclo de vida del service
     @Override
     public void onCreate() {
         super.onCreate();
-        createNotificationChannel(); // ✅ Crear canal al iniciar
+        createNotificationChannel(); // Crear canal al iniciar / notificaciones
     }
 
     @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
+    public int onStartCommand(Intent intent, int flags, int startId) { //METODO PRINCIPAL
         // Recuperar la duración enviada desde el Fragment
         timeLeftMillis = intent.getLongExtra("duration", 25 * 60 * 1000L);
         createNotificationChannel();
@@ -71,13 +71,13 @@ public class TimerService extends Service {
     }
 
     @Override
-    public void onDestroy() {
+    public void onDestroy() { //Cancela timer al destruir el service
         super.onDestroy();
         if (countDownTimer != null) countDownTimer.cancel();
     }
 
-    //logica del timer
-    private void startTimer() {
+    //logica del timer - Comienza el contador
+    private void startTimer() { //corre pomodoro
         countDownTimer = new CountDownTimer(timeLeftMillis, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -85,7 +85,7 @@ public class TimerService extends Service {
 
                 // Actualizar notificación con el tiempo restante
                 String timeText = formatTime(millisUntilFinished);
-                updateNotification("🔥 Enfocado — " + timeText);
+                updateNotification("🔥 Enfocado — " + timeText); //Actualizar notificación
 
                 // Notificar al Fragment si está escuchando
                 if (timerListener != null) {
@@ -94,7 +94,7 @@ public class TimerService extends Service {
             }
 
             @Override
-            public void onFinish() {
+            public void onFinish() { //cuando termina el timer
                 isRunning = false;
 
                 // Notificación de fin
@@ -117,7 +117,7 @@ public class TimerService extends Service {
         updateNotification("⏸ Timer pausado");
     }
 
-    public void resumeTimer() {
+    public void resumeTimer() { //reanuda el timer
         if (!isRunning && timeLeftMillis > 0) {
             startTimer();
         }
@@ -150,6 +150,7 @@ public class TimerService extends Service {
     private Notification buildNotification(String text) {
         //al tocal la notificacion volveremos a la aplicacion
         Intent openAppIntent = new Intent(this, ActivityPrincipal.class);
+        //cuando el usu toca la notificación vuelve a la app
         PendingIntent pendingIntent = PendingIntent.getActivity(
                 this, 0, openAppIntent,
                 PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE

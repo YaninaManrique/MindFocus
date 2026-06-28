@@ -29,25 +29,25 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:layout_marginBottom="24dp"
                 android:gravity="center_vertical"
-                android:layout_marginBottom="24dp">
+                android:orientation="horizontal">
 
                 <!-- Botón volver -->
                 <androidx.cardview.widget.CardView
                     android:id="@+id/btn_back"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
+                    app:cardBackgroundColor="@color/background_card_task"
                     app:cardCornerRadius="12dp"
-                    app:cardElevation="2dp"
-                    app:cardBackgroundColor="@color/background_card_task">
+                    app:cardElevation="2dp">
 
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/ic_back"
                         android:contentDescription="Volver"
+                        android:src="@drawable/ic_back"
                         app:tint="@color/color_tint" />
 
                 </androidx.cardview.widget.CardView>
@@ -57,9 +57,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="14dp"
                     android:text="@string/text_header"
+                    android:textColor="@color/color_tint"
                     android:textSize="22sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/color_tint"/>
+                    android:textStyle="bold" />
 
             </LinearLayout>
 

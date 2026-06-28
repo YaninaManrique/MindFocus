@@ -9,7 +9,7 @@ import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
 
-public class TimerCircleView extends View {
+public class TimerCircleView extends View { //Creacion vista personalizada
 
     private Paint trackPaint;
     private Paint progressPaint;
@@ -32,7 +32,7 @@ public class TimerCircleView extends View {
         init();
     }
 
-    private void init() {
+    private void init() { //inicializa los objetos graficos
         strokeWidth = dpToPx(14);
 
         // Background track (light purple)
@@ -53,7 +53,7 @@ public class TimerCircleView extends View {
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
+    protected void onDraw(Canvas canvas) { //Se invoca cuando debe dibujar la vista
         super.onDraw(canvas);
 
         float cx = getWidth() / 2f;
