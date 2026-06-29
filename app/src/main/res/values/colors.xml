@@ -126,4 +126,7 @@
     <color name="text_mid">#6B6B6B</color>
     <color name="text_light">#B0B0B0</color>
     <color name="border_color">#E8E3DA</color>
+
+    <color name="text_tertiary">#888888</color>
+    <color name="divider">#2A2A2A</color>
 </resources>
