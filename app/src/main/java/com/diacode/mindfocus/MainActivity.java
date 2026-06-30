@@ -30,17 +30,16 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences("MindFocusPrefs", MODE_PRIVATE);
         boolean sesionActiva = prefs.getBoolean("sesionActiva", false);
 
-        //buscamos el button del xml
+        // si ya hay sesion, saltamos directo sin mostrar la pantalla de bienvenida
+        if (sesionActiva) {
+            startActivity(new Intent(this, ActivityPrincipal.class));
+            finish(); // importante: cierra MainActivity para que el botón "atrás" no vuelva aquí
+            return;
+        }
         btnStart = findViewById(R.id.btnStart);
-        btnStart.setOnClickListener(v -> {
-            if (sesionActiva) {
-                //si ya tiene sesion va directo al principal
-                startActivity(new Intent(this, ActivityPrincipal.class));
-            } else {
-                //sino va al login
-                startActivity(new Intent(this, LoginActivity.class));
-            }
-        });
+        btnStart.setOnClickListener(v ->
+                startActivity(new Intent(this, LoginActivity.class))
+        );
     }
 
 }

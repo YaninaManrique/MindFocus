@@ -10,20 +10,27 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.diacode.mindfocus.data.AppDatabase;
+import com.diacode.mindfocus.data.Usuario;
+import com.diacode.mindfocus.utils.PasswordUtils;
+
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+
 public class RegistroActivity extends AppCompatActivity {
 
     private EditText etNombre, etEmail, etPassword;
     private Button btnRegistro;
     private TextView tvIrLogin;
-
-    private SharedPreferences prefs;
+    private AppDatabase db;
+    private final Executor executor = Executors.newSingleThreadExecutor();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
-        //crear o obtener
-        prefs = getSharedPreferences("MindFocusPrefs", MODE_PRIVATE);
+
+        db = AppDatabase.getInstance(this);
 
         etNombre   = findViewById(R.id.etNombre);
         etEmail    = findViewById(R.id.etEmail);
@@ -61,20 +68,40 @@ public class RegistroActivity extends AppCompatActivity {
             return;
         }
 
+        executor.execute(() -> {
+            int existe = db.usuarioDao().existeEmail(email);
+            if (existe > 0) {
+                runOnUiThread(() ->
+                        Toast.makeText(this, "Ese correo ya está registrado", Toast.LENGTH_SHORT).show()
+                );
+                return;
+            }
+            // Hasheamos la contraseña ANTES de guardarla
+            String hash = PasswordUtils.hashPassword(password);
+            Usuario nuevoUsuario = new Usuario(email, hash, nombre);
+
+            db.usuarioDao().insertar(nuevoUsuario);
+
+            runOnUiThread(() -> {
+                Toast.makeText(this, "Registro exitoso, ahora inicia sesión", Toast.LENGTH_SHORT).show();
+                finish(); // regresa al login
+            });
+        });
+
         //guardamos en el SharedPreferences
-        prefs.edit()
-                .putString("nombre", nombre)
-                .putString("email", email)
-                .putString("password", password)
-                .putBoolean("sesionActiva", true)
-                .apply();
-
-        Toast.makeText(this, "¡Cuenta creada!", Toast.LENGTH_SHORT).show();
-
-        //cuando se logea vamos directo a la app
-        Intent intent = new Intent(this, ActivityPrincipal.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
+//        prefs.edit()
+//                .putString("nombre", nombre)
+//                .putString("email", email)
+//                .putString("password", password)
+//                .putBoolean("sesionActiva", true)
+//                .apply();
+//
+//        Toast.makeText(this, "¡Cuenta creada!", Toast.LENGTH_SHORT).show();
+//
+//        //cuando se logea vamos directo a la app
+//        Intent intent = new Intent(this, ActivityPrincipal.class);
+//        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//        startActivity(intent);
     }
 
 }

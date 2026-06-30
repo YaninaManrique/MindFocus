@@ -17,6 +17,9 @@ import com.google.android.material.card.MaterialCardView;
 public class InicioFragment extends Fragment {
 
     private MaterialCardView cardObjetivos;
+    private MaterialCardView cardTareas;
+    private MaterialCardView cardCrearTareas;
+    private MaterialCardView cardMiTiempo;
     private TextView etTextoInicial;
     private SharedPreferences prefs;
     //constructor vacio
@@ -30,9 +33,10 @@ public class InicioFragment extends Fragment {
         prefs = requireActivity().getSharedPreferences("MindFocusPrefs", requireActivity().MODE_PRIVATE);
         //obtenemos el nombre
         String nombre = prefs.getString("nombre", "Usuario");//Usuario es el texto por defecto
-        cardObjetivos = view.findViewById(R.id.cardEnfoque);
         etTextoInicial = view.findViewById(R.id.etTextoInicial);
         etTextoInicial.setText("¡Bienvenid@, " + nombre + "!");
+        //ir objetivos
+        cardObjetivos = view.findViewById(R.id.cardEnfoque);
         cardObjetivos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -42,7 +46,39 @@ public class InicioFragment extends Fragment {
                         .commit();
             }
         });
-
+        //ir tareas
+        cardTareas = view.findViewById(R.id.cardTareas);
+        cardTareas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getParentFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragmentContainer, new TareasFragment())
+                        .commit();
+            }
+        });
+        //ir crear tareas
+        cardCrearTareas = view.findViewById(R.id.cardCrearTareas);
+        cardCrearTareas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getParentFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragmentContainer, new CrearTareaFragment())
+                        .commit();
+            }
+        });
+        //ir mi tiempo
+        cardMiTiempo = view.findViewById(R.id.cardMiTiempo);
+        cardMiTiempo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getParentFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragmentContainer, new TimeFragment())
+                        .commit();
+            }
+        });
         return view;
     }
 }

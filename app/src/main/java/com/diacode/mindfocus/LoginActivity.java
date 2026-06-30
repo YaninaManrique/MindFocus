@@ -10,6 +10,13 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.diacode.mindfocus.data.AppDatabase;
+import com.diacode.mindfocus.data.Usuario;
+import com.diacode.mindfocus.utils.PasswordUtils;
+
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+
 public class LoginActivity extends AppCompatActivity {
 
     private EditText etEmail, etPassword;
@@ -17,12 +24,13 @@ public class LoginActivity extends AppCompatActivity {
     private TextView tvIrRegistro;
     //para el guardado local
     private SharedPreferences prefs;
-
+    private AppDatabase db;
+    private final Executor executor = Executors.newSingleThreadExecutor();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        db = AppDatabase.getInstance(this);
         //inicializamos SharedPreferences
         prefs = getSharedPreferences("MindFocusPrefs", MODE_PRIVATE);
 
@@ -48,24 +56,39 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        //recuperamos datos guardados en el registro
-        String emailGuardado    = prefs.getString("email", "");
-        String passwordGuardado = prefs.getString("password", "");
+        // La consulta a Room va en otro hilo
+        executor.execute(() -> {
+            Usuario usuario = db.usuarioDao().buscarPorEmail(email);
 
-        //comparamos
-        if (email.equals(emailGuardado) && password.equals(passwordGuardado)) {
-            //login correcto — guardamos sesión activa
-            prefs.edit().putBoolean("sesionActiva", true).apply();
+            // Volvemos al hilo principal para actualizar UI / navegar
+            runOnUiThread(() -> {
+                if (usuario == null) {
+                    Toast.makeText(this, "Correo o contraseña incorrectos", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
-            Toast.makeText(this, "¡Bienvenido!", Toast.LENGTH_SHORT).show();
+                boolean passwordCorrecta = PasswordUtils.verificarPassword(
+                        password, usuario.getPasswordHash()
+                );
 
-            //vamos a al app
-            Intent intent = new Intent(this, ActivityPrincipal.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-        } else {
-            Toast.makeText(this, "Correo o contraseña incorrectos", Toast.LENGTH_SHORT).show();
-        }
+                if (passwordCorrecta) {
+                    // Login correcto
+                    prefs.edit()
+                            .putBoolean("sesionActiva", true)
+                            .putInt("usuarioId", usuario.getId())
+                            .putString("nombre", usuario.getNombre())
+                            .apply();
+
+                    Toast.makeText(this, "¡Bienvenido!", Toast.LENGTH_SHORT).show();
+
+                    Intent intent = new Intent(this, ActivityPrincipal.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(this, "Correo o contraseña incorrectos", Toast.LENGTH_SHORT).show();
+                }
+            });
+        });
     }
 
 }

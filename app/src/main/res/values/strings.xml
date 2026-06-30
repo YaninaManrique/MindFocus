@@ -54,7 +54,7 @@
     <string name="text8_tar1_activityPri">Modo enfoque</string>
     <string name="text9_tar2_activityPri">Mis tareas</string>
     <string name="text10_tar3_activityPri">Nueva tarea</string>
-    <string name="text11_tar4_activityPri">Mis logros</string>
+    <string name="text11_tar4_activityPri">Mi tiempo</string>
 
     <!-- activity_tareas -->
     <string name="txt1_activityTar">Mis tareas</string>

@@ -14,7 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MindFocus">
-        <activity android:name=".activity_creartarea" android:exported="false" />
+        <activity android:name=".CrearTareaFragment" android:exported="false" />
         <activity android:name=".ActivityPrincipal" android:exported="false" />
         <activity android:name=".LoginActivity" android:exported="false"/>
         <activity android:name=".RegistroActivity" android:exported="false"/>
