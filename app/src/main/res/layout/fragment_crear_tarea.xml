@@ -8,8 +8,12 @@
 
     <!-- SCROLL PRINCIPAL -->
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btn_save"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -410,25 +414,51 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <!-- BOTÓN: Dividir en pasos -->
-            <LinearLayout
-                android:id="@+id/btn_divide"
+            <!-- pasos de la tarea -->
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:gravity="center"
-                android:orientation="horizontal"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
-                android:background="@drawable/fondo_activo">
+                app:cardCornerRadius="18dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="@color/background_tar4">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/text_pasos"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/text_pasos"/>
+                    android:orientation="vertical"
+                    android:padding="16dp">
+                    <!-- Título -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="PASOS DE LA TAREA"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        android:textColor="#6B6B6B"
+                        android:letterSpacing="0.08"
+                        android:layout_marginBottom="12dp"/>
+                    <!-- Aquí se agregarán dinámicamente los item_step.xml -->
+                    <LinearLayout
+                        android:id="@+id/layout_steps"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"/>
+                    <!-- Botón Agregar paso -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_add_step"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="12dp"
+                        android:text="+ Agregar paso"
+                        android:textAllCaps="false"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/white"
+                        android:backgroundTint="@color/btn_guardar_background"/>
 
-            </LinearLayout>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
 
             <!--  TARJETA 4: Nota rápida -->
             <androidx.cardview.widget.CardView

@@ -17,9 +17,9 @@
     <color name="color_tint">#2A2A2A</color>
     <color name="background_tar1">#FFFFFF</color>
     <color name="text_type_task">#6B6B6B</color>
-    <color name="background_card_study">#E8F4EB</color>
-    <color name="stroke_color_study">#6B9E78</color>
-    <color name="text_study_color">#6B9E78</color>
+    <color name="background_card_study">#F5F1EB</color>
+    <color name="stroke_color_study">#E8E3DA</color>
+    <color name="text_study_color">#6B6B6B</color>
     <color name="background_exercise">#F5F1EB</color>
     <color name="stroke_color_exercise">#E8E3DA</color>
     <color name="text_exercise_color">#6B6B6B</color>

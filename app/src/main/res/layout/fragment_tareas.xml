@@ -125,28 +125,12 @@
             </HorizontalScrollView>
 
             <!-- LISTA DE TAREAS -->
-            <LinearLayout
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvTareas"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:orientation="vertical">
-
-                <!-- ITEM 1 -->
-                <include layout="@layout/item_tareas"/>
-
-                <!-- ITEM 2 -->
-                <include layout="@layout/item_tareas"/>
-
-                <!-- ITEM 4 -->
-                <include layout="@layout/item_tareas"/>
-
-                <!-- ITEM 3 -->
-                <include layout="@layout/item_tareas"/>
-
-                <!-- ITEM 3 -->
-                <include layout="@layout/item_tareas"/>
-
-            </LinearLayout>
+                android:nestedScrollingEnabled="false"/>
 
             <!-- TIP TDAH -->
             <LinearLayout

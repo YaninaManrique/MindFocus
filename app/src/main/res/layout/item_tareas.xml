@@ -18,6 +18,7 @@
 
         <!-- CHECK -->
         <CheckBox
+            android:id="@+id/cbCompleted"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
@@ -29,6 +30,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tvNombre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Hacer ejercicio 20 min"
@@ -37,6 +39,7 @@
                 android:textColor="@color/text_dark"/>
 
             <TextView
+                android:id="@+id/tvInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="3 pasos • Media"
