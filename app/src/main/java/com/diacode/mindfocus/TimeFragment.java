@@ -179,14 +179,18 @@ public class TimeFragment extends Fragment {
         executor.execute(() ->{
             int total = db.tareaDao().contarTodas(usuarioId);
             int completas = db.tareaDao().contarCompletadas(usuarioId);
+            // cantidad de tareas por cada tipo
             int estudio = db.tareaDao().contarEstudio(usuarioId);
             int trabajo = db.tareaDao().contarTrabajo(usuarioId);
             int hogar = db.tareaDao().contarHogar(usuarioId);
             int ejercicio = db.tareaDao().contarEjercicio(usuarioId);
             int creativo = db.tareaDao().contarCreativo(usuarioId);
+
+            // cantidad de tareas por prioridad
             int alta = db.tareaDao().contarAlta(usuarioId);
             int media = db.tareaDao().contarMedia(usuarioId);
             int baja = db.tareaDao().contarBaja(usuarioId);
+
             //PROGRESO
             int totalEstudio = db.tareaDao().totalEstudio(usuarioId);
             int estudioComp = db.tareaDao().estudioCompletadas(usuarioId);
@@ -222,6 +226,7 @@ public class TimeFragment extends Fragment {
                 // DONUT
                 //-------------------------
                 List<DonutChartView.DonutSlice> datos = new ArrayList<>();
+                // lista de secciones del grafico (se agrega color y cantidad)
                 if(estudio>0)
                     datos.add(new DonutChartView.DonutSlice(Color.parseColor("#4CAF50"), estudio));
                 if(trabajo>0)
@@ -232,27 +237,35 @@ public class TimeFragment extends Fragment {
                     datos.add(new DonutChartView.DonutSlice(Color.parseColor("#9C27B0"), ejercicio));
                 if(creativo>0)
                     datos.add(new DonutChartView.DonutSlice(Color.parseColor("#F44336"), creativo));
+                // dibuja el grafico circular
                 donut.setSlices(datos);
                 //-------------------------
                 // BARRAS
                 //-------------------------
+                // lista de barras
                 ArrayList<BarEntry> entries = new ArrayList<>();
+                // posicion X y altura de cada barra
                 entries.add(new BarEntry(0, baja));
                 entries.add(new BarEntry(1, media));
                 entries.add(new BarEntry(2, alta));
+                // conjunto de datos del grafico
                 BarDataSet set = new BarDataSet(entries,"Prioridad");
+                // se asigna colores
                 set.setColors(
                         Color.parseColor("#4CAF50"),
                         Color.parseColor("#FFC107"),
                         Color.parseColor("#F44336")
                 );
+                // se carga la informacion al grafico
                 BarData data = new BarData(set);
                 barChart.setData(data);
+                // cambiar el nombre de los ejes
                 XAxis xAxis = barChart.getXAxis();
                 xAxis.setValueFormatter(new IndexAxisValueFormatter(
                         new String[]{"Baja","Media","Alta"}
                 ));
                 xAxis.setGranularity(1f);
+                // coloca el eje en la parte inferior
                 xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
                 xAxis.setDrawGridLines(false);
                 barChart.getDescription().setEnabled(false);

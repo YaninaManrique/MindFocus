@@ -53,8 +53,10 @@ public class PasosTareaFragment extends Fragment {
         tvCompletados=view.findViewById(R.id.tvCompletados);
         tvFaltantes=view.findViewById(R.id.tvFaltantes);
         rvPasos=view.findViewById(R.id.rvPasos);
-        adapter = new PasosAdapter((paso, checked) -> {
+        // inicializa el adaptador
+        adapter = new PasosAdapter((paso, checked) -> {// cuando se marca el check se ejecuta este lambda
             paso.setCompletado(checked);
+            // guarda el cambio en la base de datos y refresca la interfaz
             executor.execute(() -> {
                 db.pasoDao().actualizar(paso);
                 comprobarEstadoTarea();
@@ -67,6 +69,7 @@ public class PasosTareaFragment extends Fragment {
         btnBack.setOnClickListener(v -> {
             getParentFragmentManager().popBackStack();
         });
+        // asocia el adaptador al RecyclerView
         rvPasos.setLayoutManager(new LinearLayoutManager(requireContext()));
         rvPasos.setAdapter(adapter);
         cargarDatos();
