@@ -5,18 +5,15 @@
     android:layout_height="match_parent"
     android:background="@color/bg_main"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="45dp"
             android:orientation="vertical"
             android:padding="30dp">
-
             <TextView
                 android:id="@+id/etTextoInicial"
                 android:layout_width="match_parent"
@@ -25,7 +22,6 @@
                 android:textSize="22sp"
                 android:textStyle="bold"
                 android:textColor="@color/text_welcome"/>
-
             <!-- PROGRESO -->
             <LinearLayout
                 android:layout_width="match_parent"
@@ -34,29 +30,26 @@
                 android:padding="16dp"
                 android:layout_marginTop="16dp"
                 android:orientation="vertical">
-
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/text2_activityPri"
                     android:textColor="@color/white"/>
-
                 <TextView
+                    android:id="@+id/tvPorcentaje"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/text3_activityPri"
                     android:textSize="28sp"
                     android:textColor="@color/white"/>
-
                 <ProgressBar
+                    android:id="@+id/progressHoy"
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
                     android:progress="40"
                     android:textColor="@color/text4_activityPri"
                     style="?android:attr/progressBarStyleHorizontal"/>
-
             </LinearLayout>
-
             <!-- TAREA -->
             <LinearLayout
                 android:layout_width="match_parent"
@@ -65,14 +58,13 @@
                 android:padding="16dp"
                 android:layout_marginTop="16dp"
                 android:orientation="vertical">
-
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/text5_activityPri"
                     android:textColor="@color/text5_activityPri"/>
-
                 <TextView
+                    android:id="@+id/tvTareaActual"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/text6_activityPri"
@@ -80,17 +72,15 @@
                     android:textSize="20sp"
                     android:layout_marginTop="4dp"
                     android:textColor="#bab7c8"/>
-
                 <Button
+                    android:id="@+id/btnEmpezar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/btn1_text_activityPri"
                     android:backgroundTint="@color/btn1_bg_activityPri"
                     android:textColor="@color/btn1_text_activityPri"
                     android:layout_marginTop="12dp"/>
-
             </LinearLayout>
-
             <!-- ACCESOS -->
             <TextView
                 android:layout_width="match_parent"
@@ -99,13 +89,11 @@
                 android:textStyle="bold"
                 android:layout_marginTop="16dp"
                 android:textColor="@color/text7_activityPri"/>
-
             <GridLayout
                 android:columnCount="2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp">
-
                 <!-- TARJETA 1 -->
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cardEnfoque"
@@ -118,19 +106,16 @@
                     app:cardBackgroundColor="@color/bg_tar1_activityPri"
                     android:clickable="true"
                     android:focusable="true">
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:orientation="vertical">
-
                         <ImageView
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:layout_marginEnd="30dp"
                             android:src="@drawable/ic_aim"/>
-
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -140,11 +125,8 @@
                             android:textStyle="bold"
                             android:textSize="15sp"
                             android:textColor="@color/text8_tar1_activityPri"/>
-
                     </LinearLayout>
-
                 </com.google.android.material.card.MaterialCardView>
-
                 <!-- TARJETA 2 -->
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cardTareas"
@@ -157,19 +139,16 @@
                     app:cardBackgroundColor="@color/bg_tar2_activityPri"
                     android:clickable="true"
                     android:focusable="true">
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:orientation="vertical">
-
                         <ImageView
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:layout_marginEnd="30dp"
                             android:src="@drawable/ic_task"/>
-
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -179,11 +158,8 @@
                             android:textStyle="bold"
                             android:textSize="15sp"
                             android:textColor="@color/text9_tar2_activityPri"/>
-
                     </LinearLayout>
-
                 </com.google.android.material.card.MaterialCardView>
-
                 <!-- TARJETA 3 -->
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cardCrearTareas"
@@ -196,19 +172,16 @@
                     app:cardBackgroundColor="@color/bg_tar3_activityPri"
                     android:clickable="true"
                     android:focusable="true">
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:orientation="vertical">
-
                         <ImageView
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:layout_marginEnd="30dp"
                             android:src="@drawable/ic_pencil"/>
-
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -218,11 +191,8 @@
                             android:textStyle="bold"
                             android:textSize="15sp"
                             android:textColor="@color/text10_tar3_activityPri"/>
-
                     </LinearLayout>
-
                 </com.google.android.material.card.MaterialCardView>
-
                 <!-- TARJETA 4 -->
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cardMiTiempo"
@@ -235,7 +205,6 @@
                     app:cardBackgroundColor="@color/bg_tar4_activityPri"
                     android:clickable="true"
                     android:focusable="true">
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -259,12 +228,8 @@
                             android:textColor="@color/text11_tar4_activityPri"/>
 
                     </LinearLayout>
-
                 </com.google.android.material.card.MaterialCardView>
-
             </GridLayout>
-
         </LinearLayout>
-
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

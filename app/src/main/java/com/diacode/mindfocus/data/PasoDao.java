@@ -22,4 +22,6 @@ public interface PasoDao {
     List<Paso> listarPorTarea(int tareaId);
     @Query("SELECT COUNT(*) FROM pasos WHERE tareaId = :tareaId")
     int contarPasos(int tareaId);
+    @Query("UPDATE pasos SET completado = 1 WHERE tareaId = :tareaId")
+    void completarTodos(int tareaId);
 }

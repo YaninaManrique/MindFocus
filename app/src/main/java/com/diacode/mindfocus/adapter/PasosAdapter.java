@@ -41,8 +41,14 @@ public class PasosAdapter extends RecyclerView.Adapter<PasosAdapter.ViewHolder>{
         holder.tvPaso.setText(paso.getDescripcion());
         holder.cbPaso.setOnCheckedChangeListener(null);
         holder.cbPaso.setChecked(paso.isCompletado());
-        holder.cbPaso.setOnCheckedChangeListener((buttonView,isChecked)->{
-            listener.onChecked(paso,isChecked);
+        // si ya está completado, no puede volver a modificarse
+        holder.cbPaso.setEnabled(!paso.isCompletado());
+        holder.cbPaso.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if(isChecked){
+                listener.onChecked(paso, true);
+                // inmediatamente queda bloqueado
+                holder.cbPaso.setEnabled(false);
+            }
         });
     }
     @Override

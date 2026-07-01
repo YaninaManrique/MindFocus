@@ -3,6 +3,7 @@ package com.diacode.mindfocus;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -72,11 +73,13 @@ public class LoginActivity extends AppCompatActivity {
                 );
 
                 if (passwordCorrecta) {
+                    Log.d("LOGIN", "Email usuario: " + usuario.getEmail());
                     // Login correcto
                     prefs.edit()
                             .putBoolean("sesionActiva", true)
                             .putInt("usuarioId", usuario.getId())
                             .putString("nombre", usuario.getNombre())
+                            .putString("email", usuario.getEmail())
                             .apply();
 
                     Toast.makeText(this, "¡Bienvenido!", Toast.LENGTH_SHORT).show();

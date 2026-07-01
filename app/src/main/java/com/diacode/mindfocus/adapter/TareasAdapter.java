@@ -49,7 +49,15 @@ public class TareasAdapter extends RecyclerView.Adapter<TareasAdapter.ViewHolder
                         + " • "
                         + estado
         );
+        holder.cbCompleted.setOnCheckedChangeListener(null);
         holder.cbCompleted.setChecked(tarea.isCompletada());
+        // si ya esta completa, no puede volver a cambiarse
+        holder.cbCompleted.setEnabled(!tarea.isCompletada());
+        holder.cbCompleted.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if(isChecked){
+                listener.onCompletarTarea(tarea);
+            }
+        });
         holder.itemView.setOnClickListener(v -> {
             listener.onClick(tarea);
         });
@@ -97,5 +105,6 @@ public class TareasAdapter extends RecyclerView.Adapter<TareasAdapter.ViewHolder
     }
     public interface OnTareaClickListener{
         void onClick(Tarea tarea);
+        void onCompletarTarea(Tarea tarea);
     }
 }

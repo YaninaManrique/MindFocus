@@ -15,7 +15,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -23,12 +22,10 @@
             android:paddingHorizontal="20dp"
             android:paddingTop="52dp"
             android:paddingBottom="24dp">
-
             <!-- HEADER -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
                 <TextView
                     android:id="@+id/tvTitulo"
                     android:layout_width="wrap_content"
@@ -70,61 +67,14 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <!-- TABS -->
-            <LinearLayout
-                android:id="@+id/llModeTabs"
-                android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:orientation="horizontal"
-                android:background="@drawable/bg_prioridad1"
-                android:padding="4dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp">
-
-                <TextView
-                    android:id="@+id/tabPomodoro"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="Hoy"
-                    android:textSize="12sp"
-                    android:textColor="@color/white"
-                    android:background="@drawable/bg_tab_selected"
-                    android:tag="pomodoro"/>
-
-                <TextView
-                    android:id="@+id/tabCorto"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="Esta semana"
-                    android:textSize="12sp"
-                    android:textColor="@color/tab_text_unselected"
-                    android:background="@android:color/transparent"
-                    android:tag="corto"/>
-
-                <TextView
-                    android:id="@+id/tabMini"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="Este mes"
-                    android:textSize="12sp"
-                    android:textColor="@color/tab_text_unselected"
-                    android:background="@android:color/transparent"
-                    android:tag="mini"/>
-
-            </LinearLayout>
-
             <!-- CARDS RESUMEN -->
             <LinearLayout
+                android:id="@+id/lvResumen"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginBottom="24dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
                 android:weightSum="2">
 
                 <LinearLayout
@@ -139,15 +89,15 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Total registrado"
+                        android:text="Total de tareas"
                         android:textSize="11sp"
                         android:textColor="@color/txt1_activityEnf" />
 
                     <TextView
-                        android:id="@+id/tv_total_tiempo"
+                        android:id="@+id/tvTotalTareas"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="18h 40m"
+                        android:text="12"
                         android:textSize="22sp"
                         android:textStyle="bold"
                         android:textColor="@color/txt1_activityEnf"
@@ -156,7 +106,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="esta semana"
+                        android:text="registradas"
                         android:textSize="11sp"
                         android:textColor="@color/txt1_activityEnf"
                         android:layout_marginTop="2dp" />
@@ -175,25 +125,25 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Materia más estudiada"
+                        android:text="Productividad"
                         android:textSize="11sp"
                         android:textColor="@color/txt1_activityEnf" />
 
                     <TextView
-                        android:id="@+id/tv_materia_top_tiempo"
+                        android:id="@+id/tvProductividad"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="6h 20m"
+                        android:text="85%"
                         android:textSize="20sp"
                         android:textStyle="bold"
                         android:textColor="@color/txt1_activityEnf"
                         android:layout_marginTop="2dp" />
 
                     <TextView
-                        android:id="@+id/tv_materia_top_nombre"
+                        android:id="@+id/tvEstado"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Cálculo III"
+                        android:text="Excelente"
                         android:textSize="11sp"
                         android:textColor="@color/txt1_activityEnf"
                         android:layout_marginTop="2dp" />
@@ -202,16 +152,46 @@
 
             </LinearLayout>
 
-            <!-- SECCIÓN POR MATERIA -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:background="@drawable/fondo_blanco"
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Resumen"
+                    android:textStyle="bold"
+                    android:textSize="18sp"/>
+
+                <TextView
+                    android:id="@+id/tvCompletadas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Completadas: 0"/>
+
+                <TextView
+                    android:id="@+id/tvPorcentaje"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0%"
+                    android:textStyle="bold"
+                    android:textSize="24sp"/>
+
+            </LinearLayout>
+
+            <!-- SECCIÓN POR PRIORIDAD -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="POR MATERIA"
+                android:text="POR PRIORIDAD"
                 android:textSize="11sp"
                 android:textStyle="bold"
                 android:letterSpacing="0.08"
-                android:textColor="@color/text_secondary"
-                android:layout_marginBottom="14dp" />
+                android:textColor="@color/text_secondary"/>
 
             <!-- Donut + leyenda -->
             <LinearLayout
@@ -219,7 +199,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
-                android:layout_marginBottom="24dp">
+                android:layout_marginBottom="20dp">
 
                 <!-- Gráfico de donut (personalView o View placeholder) -->
                 <com.diacode.mindfocus.DonutChartView
@@ -228,34 +208,17 @@
                     android:layout_height="90dp"
                     android:layout_marginEnd="20dp" />
 
-                <!-- Leyenda -->
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <!-- ítem leyenda × 5 (repetir según materias) -->
-                    <include layout="@layout/item_leyenda_materia"
-                        android:id="@+id/leyenda_calculo" />
-                    <include layout="@layout/item_leyenda_materia"
-                        android:id="@+id/leyenda_prog" />
-                    <include layout="@layout/item_leyenda_materia"
-                        android:id="@+id/leyenda_fisica" />
-                    <include layout="@layout/item_leyenda_materia"
-                        android:id="@+id/leyenda_ingles" />
-                    <include layout="@layout/item_leyenda_materia"
-                        android:id="@+id/leyenda_otras" />
-
-                </LinearLayout>
-
+                <com.github.mikephil.charting.charts.BarChart
+                    android:id="@+id/barChart"
+                    android:layout_width="match_parent"
+                    android:layout_height="210dp"/>
             </LinearLayout>
 
-            <!-- SECCIÓN DETALLE -->
+            <!-- SECCIÓN TIPO DE TAREA -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="DETALLE"
+                android:text="TIPO DE TAREA"
                 android:textSize="11sp"
                 android:textStyle="bold"
                 android:letterSpacing="0.08"
@@ -270,7 +233,7 @@
                 android:orientation="vertical"
                 android:layout_marginBottom="18dp">
 
-                <!-- Item: Cálculo III -->
+                <!-- Item: ESTUDIO-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -288,11 +251,12 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="∫  Cálculo III"
+                            android:text="📚 Estudio"
                             android:textSize="13sp"
                             android:textStyle="bold"
                             android:textColor="@color/text_primary" />
                         <TextView
+                            android:id="@+id/tvEstudioCantidad"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="6h 20m"
@@ -303,6 +267,7 @@
                     </LinearLayout>
 
                     <ProgressBar
+                        android:id="@+id/progressEstudio"
                         android:layout_width="match_parent"
                         android:layout_height="5dp"
                         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
@@ -312,7 +277,7 @@
 
                 </LinearLayout>
 
-                <!-- Item: Programación -->
+                <!-- Item: EJERCICIO -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -330,12 +295,13 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="&lt;/&gt;  Programación"
+                            android:text="🏃 Ejercicio"
                             android:textSize="13sp"
                             android:textStyle="bold"
                             android:textColor="@color/text_primary" />
 
                         <TextView
+                            android:id="@+id/tvEjercicioCantidad"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="3h 55m"
@@ -346,6 +312,7 @@
                     </LinearLayout>
 
                     <ProgressBar
+                        android:id="@+id/progressEjercicio"
                         android:layout_width="match_parent"
                         android:layout_height="5dp"
                         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
@@ -355,7 +322,7 @@
 
                 </LinearLayout>
 
-                <!-- Item: Física II -->
+                <!-- Item: HOGAR -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -373,11 +340,12 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="⚡  Física II"
+                            android:text="🏠 Hogar"
                             android:textSize="13sp"
                             android:textStyle="bold"
                             android:textColor="@color/text_primary" />
                         <TextView
+                            android:id="@+id/tvHogarCantidad"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="2h 35m"
@@ -388,6 +356,7 @@
                     </LinearLayout>
 
                     <ProgressBar
+                        android:id="@+id/progressHogar"
                         android:layout_width="match_parent"
                         android:layout_height="5dp"
                         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
@@ -397,7 +366,52 @@
 
                 </LinearLayout>
 
-                <!-- Item: Inglés -->
+                <!-- Item: TRABAJO -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="6dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="💼 Trabajo"
+                            android:textSize="13sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/text_primary" />
+
+                        <TextView
+                            android:id="@+id/tvTrabajoCantidad"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1h 50m"
+                            android:textSize="13sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/text_primary" />
+
+                    </LinearLayout>
+
+                    <ProgressBar
+                        android:id="@+id/progressTrabajo"
+                        android:layout_width="match_parent"
+                        android:layout_height="5dp"
+                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                        android:progress="22"
+                        android:progressDrawable="@drawable/progress_yellow"
+                        android:max="100" />
+
+                </LinearLayout>
+
+                <!-- Item: CREATIVO -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -414,12 +428,13 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="A  Inglés"
+                            android:text="🎨 Creativo"
                             android:textSize="13sp"
                             android:textStyle="bold"
                             android:textColor="@color/text_primary" />
 
                         <TextView
+                            android:id="@+id/tvCreativoCantidad"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="1h 50m"
@@ -430,6 +445,7 @@
                     </LinearLayout>
 
                     <ProgressBar
+                        android:id="@+id/progressCreativo"
                         android:layout_width="match_parent"
                         android:layout_height="5dp"
                         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
@@ -451,6 +467,7 @@
                 android:gravity="center_vertical"
                 android:padding="14dp">
                 <TextView
+                    android:id="@+id/tvFrase"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="💡 Llevas poco tiempo en Física II y tienes un examen en 5 días. Considera añadir al menos 2h más esta semana."
