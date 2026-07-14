@@ -78,4 +78,44 @@ public interface TareaDao {
     int contarCompletadasPorFecha(int usuarioId, long inicio, long fin);
     @Query("SELECT * FROM tareas WHERE usuarioId = :usuarioId AND fecha BETWEEN :inicio AND :fin AND estado = 'PENDIENTE' ORDER BY horaInicio ASC LIMIT 1")
     Tarea obtenerTareaActualPorFecha(int usuarioId, long inicio, long fin);
+    // Por tipo (total y completadas) — ejemplo con ESTUDIO, repite para los demás
+    @Query("SELECT COUNT(*) FROM tareas WHERE usuarioId = :usuarioId AND fecha BETWEEN :inicio AND :fin AND tipo = 'ESTUDIO'")
+    int totalEstudioPorFecha(int usuarioId, long inicio, long fin);
+
+    @Query("SELECT COUNT(*) FROM tareas WHERE usuarioId = :usuarioId AND fecha BETWEEN :inicio AND :fin AND tipo = 'ESTUDIO' AND estado = 'COMPLETADA'")
+    int estudioCompletadasPorFecha(int usuarioId, long inicio, long fin);
+
+    @Query("SELECT COUNT(*) FROM tareas WHERE usuarioId = :usuarioId AND fecha BETWEEN :inicio AND :fin AND tipo = 'EJERCICIO'")
+    int totalEjercicioPorFecha(int usuarioId, long inicio, long fin);
+
+    @Query("SELECT COUNT(*) FROM tareas WHERE usuarioId = :usuarioId AND fecha BETWEEN :inicio AND :fin AND tipo = 'EJERCICIO' AND estado = 'COMPLETADA'")
+    int ejercicioCompletadasPorFecha(int usuarioId, long inicio, long fin);
+
+    @Query("SELECT COUNT(*) FROM tareas WHERE usuarioId = :usuarioId AND fecha BETWEEN :inicio AND :fin AND tipo = 'HOGAR'")
+    int totalHogarPorFecha(int usuarioId, long inicio, long fin);
+
+    @Query("SELECT COUNT(*) FROM tareas WHERE usuarioId = :usuarioId AND fecha BETWEEN :inicio AND :fin AND tipo = 'HOGAR' AND estado = 'COMPLETADA'")
+    int hogarCompletadasPorFecha(int usuarioId, long inicio, long fin);
+
+    @Query("SELECT COUNT(*) FROM tareas WHERE usuarioId = :usuarioId AND fecha BETWEEN :inicio AND :fin AND tipo = 'TRABAJO'")
+    int totalTrabajoPorFecha(int usuarioId, long inicio, long fin);
+
+    @Query("SELECT COUNT(*) FROM tareas WHERE usuarioId = :usuarioId AND fecha BETWEEN :inicio AND :fin AND tipo = 'TRABAJO' AND estado = 'COMPLETADA'")
+    int trabajoCompletadasPorFecha(int usuarioId, long inicio, long fin);
+
+    @Query("SELECT COUNT(*) FROM tareas WHERE usuarioId = :usuarioId AND fecha BETWEEN :inicio AND :fin AND tipo = 'CREATIVO'")
+    int totalCreativoPorFecha(int usuarioId, long inicio, long fin);
+
+    @Query("SELECT COUNT(*) FROM tareas WHERE usuarioId = :usuarioId AND fecha BETWEEN :inicio AND :fin AND tipo = 'CREATIVO' AND estado = 'COMPLETADA'")
+    int creativoCompletadasPorFecha(int usuarioId, long inicio, long fin);
+
+    // Por prioridad
+    @Query("SELECT COUNT(*) FROM tareas WHERE usuarioId = :usuarioId AND fecha BETWEEN :inicio AND :fin AND prioridad = 'ALTA'")
+    int contarAltaPorFecha(int usuarioId, long inicio, long fin);
+
+    @Query("SELECT COUNT(*) FROM tareas WHERE usuarioId = :usuarioId AND fecha BETWEEN :inicio AND :fin AND prioridad = 'MEDIA'")
+    int contarMediaPorFecha(int usuarioId, long inicio, long fin);
+
+    @Query("SELECT COUNT(*) FROM tareas WHERE usuarioId = :usuarioId AND fecha BETWEEN :inicio AND :fin AND prioridad = 'BAJA'")
+    int contarBajaPorFecha(int usuarioId, long inicio, long fin);
 }

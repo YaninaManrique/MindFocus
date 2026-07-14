@@ -67,6 +67,16 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <!-- FILTROS: dias de la semana -->
+            <LinearLayout
+                android:id="@+id/layout_dias_stats"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="7"
+                android:layout_marginTop="14dp"
+                android:layout_marginBottom="10dp"/>
+
             <!-- CARDS RESUMEN -->
             <LinearLayout
                 android:id="@+id/lvResumen"
@@ -246,7 +256,12 @@
                         android:orientation="horizontal"
                         android:gravity="center_vertical"
                         android:layout_marginBottom="6dp">
-
+                        <!-- INDICADOR DE COLOR -->
+                        <View
+                            android:layout_width="10dp"
+                            android:layout_height="10dp"
+                            android:layout_marginEnd="8dp"
+                            android:background="@drawable/indicador_circular_estudio" />
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -266,14 +281,25 @@
 
                     </LinearLayout>
 
-                    <ProgressBar
-                        android:id="@+id/progressEstudio"
+                    <LinearLayout
+                        android:id="@+id/barEstudio"
                         android:layout_width="match_parent"
-                        android:layout_height="5dp"
-                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                        android:progress="77"
-                        android:progressDrawable="@drawable/progress_purple"
-                        android:max="100" />
+                        android:layout_height="8dp"
+                        android:orientation="horizontal"
+                        android:background="#E0E0E0">
+                        <View
+                            android:id="@+id/segEstudioCompletado"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="#4CAF50"/>
+                        <View
+                            android:id="@+id/segEstudioPendiente"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="#E53935"/>
+                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -290,7 +316,12 @@
                         android:orientation="horizontal"
                         android:gravity="center_vertical"
                         android:layout_marginBottom="6dp">
-
+                        <!-- INDICADOR DE COLOR -->
+                        <View
+                            android:layout_width="10dp"
+                            android:layout_height="10dp"
+                            android:layout_marginEnd="8dp"
+                            android:background="@drawable/indicador_circular_ejercicio" />
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -310,16 +341,25 @@
                             android:textColor="@color/text_primary" />
 
                     </LinearLayout>
-
-                    <ProgressBar
-                        android:id="@+id/progressEjercicio"
+                    <LinearLayout
+                        android:id="@+id/barEjercicio"
                         android:layout_width="match_parent"
-                        android:layout_height="5dp"
-                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                        android:progress="48"
-                        android:progressDrawable="@drawable/progress_teal"
-                        android:max="100" />
-
+                        android:layout_height="8dp"
+                        android:orientation="horizontal"
+                        android:background="#E0E0E0">
+                        <View
+                            android:id="@+id/segEjercicioCompletado"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="#4CAF50"/>
+                        <View
+                            android:id="@+id/segEjercicioPendiente"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="#E53935"/>
+                    </LinearLayout>
                 </LinearLayout>
 
                 <!-- Item: HOGAR -->
@@ -335,7 +375,12 @@
                         android:orientation="horizontal"
                         android:gravity="center_vertical"
                         android:layout_marginBottom="6dp">
-
+                        <!-- INDICADOR DE COLOR -->
+                        <View
+                            android:layout_width="10dp"
+                            android:layout_height="10dp"
+                            android:layout_marginEnd="8dp"
+                            android:background="@drawable/indicador_circular_hogar" />
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -354,16 +399,25 @@
                             android:textColor="@color/text_primary" />
 
                     </LinearLayout>
-
-                    <ProgressBar
-                        android:id="@+id/progressHogar"
+                    <LinearLayout
+                        android:id="@+id/barHogar"
                         android:layout_width="match_parent"
-                        android:layout_height="5dp"
-                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                        android:progress="31"
-                        android:progressDrawable="@drawable/progress_orange"
-                        android:max="100" />
-
+                        android:layout_height="8dp"
+                        android:orientation="horizontal"
+                        android:background="#E0E0E0">
+                        <View
+                            android:id="@+id/segHogarCompletado"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="#4CAF50"/>
+                        <View
+                            android:id="@+id/segHogarPendiente"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="#E53935"/>
+                    </LinearLayout>
                 </LinearLayout>
 
                 <!-- Item: TRABAJO -->
@@ -379,7 +433,12 @@
                         android:orientation="horizontal"
                         android:gravity="center_vertical"
                         android:layout_marginBottom="6dp">
-
+                        <!-- INDICADOR DE COLOR -->
+                        <View
+                            android:layout_width="10dp"
+                            android:layout_height="10dp"
+                            android:layout_marginEnd="8dp"
+                            android:background="@drawable/indicador_circular_trabajo" />
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -399,16 +458,25 @@
                             android:textColor="@color/text_primary" />
 
                     </LinearLayout>
-
-                    <ProgressBar
-                        android:id="@+id/progressTrabajo"
+                    <LinearLayout
+                        android:id="@+id/barTrabajo"
                         android:layout_width="match_parent"
-                        android:layout_height="5dp"
-                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                        android:progress="22"
-                        android:progressDrawable="@drawable/progress_yellow"
-                        android:max="100" />
-
+                        android:layout_height="8dp"
+                        android:orientation="horizontal"
+                        android:background="#E0E0E0">
+                        <View
+                            android:id="@+id/segTrabajoCompletado"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="#4CAF50"/>
+                        <View
+                            android:id="@+id/segTrabajoPendiente"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="#E53935"/>
+                    </LinearLayout>
                 </LinearLayout>
 
                 <!-- Item: CREATIVO -->
@@ -423,7 +491,12 @@
                         android:orientation="horizontal"
                         android:gravity="center_vertical"
                         android:layout_marginBottom="6dp">
-
+                        <!-- INDICADOR DE COLOR -->
+                        <View
+                            android:layout_width="10dp"
+                            android:layout_height="10dp"
+                            android:layout_marginEnd="8dp"
+                            android:background="@drawable/indicador_circular_creativo" />
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -443,16 +516,25 @@
                             android:textColor="@color/text_primary" />
 
                     </LinearLayout>
-
-                    <ProgressBar
-                        android:id="@+id/progressCreativo"
+                    <LinearLayout
+                        android:id="@+id/barCreativo"
                         android:layout_width="match_parent"
-                        android:layout_height="5dp"
-                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                        android:progress="22"
-                        android:progressDrawable="@drawable/progress_yellow"
-                        android:max="100" />
-
+                        android:layout_height="8dp"
+                        android:orientation="horizontal"
+                        android:background="#E0E0E0">
+                        <View
+                            android:id="@+id/segCreativoCompletado"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="#4CAF50"/>
+                        <View
+                            android:id="@+id/segCreativoPendiente"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="#E53935"/>
+                    </LinearLayout>
                 </LinearLayout>
 
             </LinearLayout>
