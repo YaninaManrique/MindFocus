@@ -69,4 +69,13 @@ public interface TareaDao {
     int totalCreativo(int usuarioId);
     @Query("SELECT COUNT(*) FROM tareas WHERE usuarioId=:usuarioId AND tipo='CREATIVO' AND completada=1")
     int creativoCompletadas(int usuarioId);
+    //filtrar por fechas
+    @Query("SELECT * FROM tareas WHERE usuarioId = :usuarioId AND fecha BETWEEN :inicio AND :fin ORDER BY horaInicio ASC")
+    List<Tarea> listarPorFecha(int usuarioId, long inicio, long fin);
+    @Query("SELECT COUNT(*) FROM tareas WHERE usuarioId = :usuarioId AND fecha BETWEEN :inicio AND :fin")
+    int contarTodasPorFecha(int usuarioId, long inicio, long fin);
+    @Query("SELECT COUNT(*) FROM tareas WHERE usuarioId = :usuarioId AND fecha BETWEEN :inicio AND :fin AND estado = 'COMPLETADA'")
+    int contarCompletadasPorFecha(int usuarioId, long inicio, long fin);
+    @Query("SELECT * FROM tareas WHERE usuarioId = :usuarioId AND fecha BETWEEN :inicio AND :fin AND estado = 'PENDIENTE' ORDER BY horaInicio ASC LIMIT 1")
+    Tarea obtenerTareaActualPorFecha(int usuarioId, long inicio, long fin);
 }

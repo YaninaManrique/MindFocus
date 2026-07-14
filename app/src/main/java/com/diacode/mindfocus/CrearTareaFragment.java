@@ -1,5 +1,7 @@
 package com.diacode.mindfocus;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -21,13 +23,18 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.diacode.mindfocus.data.AppDatabase;
+import com.diacode.mindfocus.data.EstadoTarea;
 import com.diacode.mindfocus.data.Paso;
 import com.diacode.mindfocus.data.Prioridad;
 import com.diacode.mindfocus.data.Tarea;
 import com.diacode.mindfocus.data.TipoTarea;
+import com.google.android.material.button.MaterialButton;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -51,6 +58,10 @@ public class CrearTareaFragment extends Fragment{
     private CardView chipWork;
     private CardView chipCreative;
     private CardView btnBack;
+    private MaterialButton btnPickDate, btnPickStart, btnPickEnd;
+    private final Calendar fechaSeleccionada = Calendar.getInstance();
+    private Long horaInicioMillis = null;
+    private Long horaFinMillis = null;
     public CrearTareaFragment(){}
     @Nullable
     @Override
@@ -91,6 +102,14 @@ public class CrearTareaFragment extends Fragment{
         priorityMedia.setOnClickListener(v -> seleccionarPrioridad(Prioridad.MEDIA));
         priorityAlta.setOnClickListener(v -> seleccionarPrioridad(Prioridad.ALTA));
 
+        btnPickDate = view.findViewById(R.id.btn_pick_date);
+        btnPickStart = view.findViewById(R.id.btn_pick_start);
+        btnPickEnd = view.findViewById(R.id.btn_pick_end);
+
+        btnPickDate.setOnClickListener(v -> mostrarSelectorFecha());
+        btnPickStart.setOnClickListener(v -> mostrarSelectorHora(true));
+        btnPickEnd.setOnClickListener(v -> mostrarSelectorHora(false));
+
         btnBack = view.findViewById(R.id.btn_back);
         btnBack.setOnClickListener(v -> volverATareas());
 
@@ -109,9 +128,16 @@ public class CrearTareaFragment extends Fragment{
         String nombre = etNombre.getText().toString().trim();
         String nota = etNota.getText().toString().trim();
         if (nombre.isEmpty()) {
-            Toast.makeText(requireContext(),
-                    "Ingrese un nombre",
-                    Toast.LENGTH_SHORT).show();
+            Toast.makeText(requireContext(), "Ingrese un nombre", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        //validar campos de fecha y hora
+        if (horaInicioMillis == null || horaFinMillis == null) {
+            Toast.makeText(requireContext(), "Seleccione fecha y horario", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (horaFinMillis <= horaInicioMillis) {
+            Toast.makeText(requireContext(), "La hora de fin debe ser mayor a la de inicio", Toast.LENGTH_SHORT).show();
             return;
         }
         int usuarioId = prefs.getInt("usuarioId", -1);
@@ -123,6 +149,11 @@ public class CrearTareaFragment extends Fragment{
             tarea.setTipo(tipoSeleccionado);
             tarea.setPrioridad(prioridadSeleccionada);
             tarea.setCompletada(false);
+            tarea.setEstado(EstadoTarea.PENDIENTE);
+            tarea.setFecha(fechaSeleccionada.getTimeInMillis());
+            tarea.setHoraInicio(horaInicioMillis);
+            tarea.setHoraFin(horaFinMillis);
+
             long idTarea = db.tareaDao().insertar(tarea);
             List<Paso> pasos = new ArrayList<>();
             for (int i = 0; i < layoutSteps.getChildCount(); i++) {
@@ -205,5 +236,36 @@ public class CrearTareaFragment extends Fragment{
                 .beginTransaction()
                 .replace(R.id.fragmentContainer, new TareasFragment())
                 .commit();
+    }
+    private void mostrarSelectorFecha() {
+        new DatePickerDialog(requireContext(), (view, year, month, day) -> {
+            fechaSeleccionada.set(year, month, day, 0, 0, 0);
+            SimpleDateFormat sdf = new SimpleDateFormat("EEEE dd/MM/yyyy", new Locale("es"));
+            btnPickDate.setText("📅 " + sdf.format(fechaSeleccionada.getTime()));
+            //si ya se habían elegido horas, hay que reajustarlas al nuevo dia
+            horaInicioMillis = null;
+            horaFinMillis = null;
+            btnPickStart.setText("⏱ Inicio");
+            btnPickEnd.setText("⏱ Fin");
+        }, fechaSeleccionada.get(Calendar.YEAR),
+                fechaSeleccionada.get(Calendar.MONTH),
+                fechaSeleccionada.get(Calendar.DAY_OF_MONTH)).show();
+    }
+    private void mostrarSelectorHora(boolean esInicio) {
+        Calendar ahora = Calendar.getInstance();
+        new TimePickerDialog(requireContext(), (view, hourOfDay, minute) -> {
+            Calendar horaCal = (Calendar) fechaSeleccionada.clone();
+            horaCal.set(Calendar.HOUR_OF_DAY, hourOfDay);
+            horaCal.set(Calendar.MINUTE, minute);
+            horaCal.set(Calendar.SECOND, 0);
+            SimpleDateFormat sdfHora = new SimpleDateFormat("HH:mm", Locale.getDefault());
+            if (esInicio) {
+                horaInicioMillis = horaCal.getTimeInMillis();
+                btnPickStart.setText("⏱ Inicio: " + sdfHora.format(horaCal.getTime()));
+            } else {
+                horaFinMillis = horaCal.getTimeInMillis();
+                btnPickEnd.setText("⏱ Fin: " + sdfHora.format(horaCal.getTime()));
+            }
+        }, ahora.get(Calendar.HOUR_OF_DAY), ahora.get(Calendar.MINUTE), true).show();
     }
 }

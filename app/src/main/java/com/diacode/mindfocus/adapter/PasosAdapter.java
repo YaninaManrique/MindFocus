@@ -17,6 +17,7 @@ import java.util.List;
 // adaptador que muestra la lista de pasos en el RecyclerView
 public class PasosAdapter extends RecyclerView.Adapter<PasosAdapter.ViewHolder>{
     private List<Paso> lista = new ArrayList<>();
+    private boolean soloLectura = false;
     // notifica cuando un paso es marcado como completado
     public interface OnPasoChanged{
         void onChecked(Paso paso, boolean checked);
@@ -28,6 +29,10 @@ public class PasosAdapter extends RecyclerView.Adapter<PasosAdapter.ViewHolder>{
     // actualiza la lista de pasos y refresca la vista
     public void setLista(List<Paso> lista){
         this.lista = lista;
+        notifyDataSetChanged();
+    }
+    public void setSoloLectura(boolean soloLectura) { // NUEVO
+        this.soloLectura = soloLectura;
         notifyDataSetChanged();
     }
     // crea la vista de cada elemento de la lista
@@ -45,8 +50,9 @@ public class PasosAdapter extends RecyclerView.Adapter<PasosAdapter.ViewHolder>{
         holder.tvPaso.setText(paso.getDescripcion());
         holder.cbPaso.setOnCheckedChangeListener(null);
         holder.cbPaso.setChecked(paso.isCompletado());
-        // si ya está completado, no puede volver a modificarse
-        holder.cbPaso.setEnabled(!paso.isCompletado());
+        // se puede tocar solo si NO es solo lectura Y el paso aun no está completado
+        boolean puedeEditar = !soloLectura && !paso.isCompletado();
+        holder.cbPaso.setEnabled(puedeEditar);
         // notifica cuando el usuario completa el paso
         holder.cbPaso.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if(isChecked){

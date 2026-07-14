@@ -22,10 +22,12 @@ import android.widget.Toast;
 import com.diacode.mindfocus.data.AppDatabase;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.google.android.material.button.MaterialButton;
 
 import java.io.File;
@@ -256,6 +258,13 @@ public class TimeFragment extends Fragment {
                         Color.parseColor("#FFC107"),
                         Color.parseColor("#F44336")
                 );
+                //para mostrar a enteros
+                set.setValueFormatter(new ValueFormatter() {
+                    @Override
+                    public String getFormattedValue(float value) {
+                        return String.valueOf((int) value);
+                    }
+                });
                 // se carga la informacion al grafico
                 BarData data = new BarData(set);
                 barChart.setData(data);
@@ -268,6 +277,14 @@ public class TimeFragment extends Fragment {
                 // coloca el eje en la parte inferior
                 xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
                 xAxis.setDrawGridLines(false);
+                YAxis yAxisLeft = barChart.getAxisLeft();
+                yAxisLeft.setGranularity(1f);
+                yAxisLeft.setValueFormatter(new ValueFormatter() {
+                    @Override
+                    public String getFormattedValue(float value) {
+                        return String.valueOf((int) value);
+                    }
+                });
                 barChart.getDescription().setEnabled(false);
                 barChart.getAxisRight().setEnabled(false);
                 barChart.animateY(1200);

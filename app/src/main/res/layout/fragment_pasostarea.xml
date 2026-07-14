@@ -38,6 +38,28 @@
                         android:textStyle="bold"/>
                 </LinearLayout>
 
+                <!-- BANNER SOLO LECTURA -->
+                <LinearLayout
+                    android:id="@+id/layout_bloqueado"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/fondo_lila"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:padding="12dp"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="🔒 Este día ya pasó. Solo puedes ver el estado, no editar."
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/purple_dark"/>
+
+                </LinearLayout>
+
                 <!-- CARD PROGRESO -->
                 <com.google.android.material.card.MaterialCardView
                     android:layout_marginTop="16dp"
@@ -90,6 +112,48 @@
 
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
+
+            <!-- TIMER DE LA TAREA -->
+            <LinearLayout
+                android:id="@+id/layout_timer_tarea"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_marginTop="16dp">
+                <TextView
+                    android:id="@+id/tvTimerTarea"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="--:--"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary"
+                    android:layout_marginBottom="12dp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnIniciarTarea"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="6dp"
+                        android:text="▶ Iniciar"
+                        android:textAllCaps="false"/>
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnFinalizarTarea"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="6dp"
+                        android:text="⏹ Finalizar"
+                        android:textAllCaps="false"
+                        android:enabled="false"/>
+                </LinearLayout>
+            </LinearLayout>
 
                 <!-- LISTA -->
                 <TextView

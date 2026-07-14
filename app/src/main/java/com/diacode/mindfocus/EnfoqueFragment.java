@@ -109,9 +109,8 @@ public class EnfoqueFragment extends Fragment {
                         timerCircleView.setProgress(progress);
                     });
                 }
-
                 @Override
-                public void onTimerFinish() {
+                public void onTimerFinish(boolean finalizadoManualmente) {
                     requireActivity().runOnUiThread(() -> {
                         isRunning = false;
                         btnPausar.setText("▶ Iniciar");

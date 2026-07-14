@@ -18,6 +18,7 @@ import com.diacode.mindfocus.data.AppDatabase;
 import com.diacode.mindfocus.data.Tarea;
 import com.google.android.material.card.MaterialCardView;
 
+import java.util.Calendar;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -117,10 +118,20 @@ public class InicioFragment extends Fragment {
     }
     private void cargarResumen(){
         int usuarioId = prefs.getInt("usuarioId",-1);
+
+        // calcula el rango de "hoy": medianoche a medianoche
+        Calendar hoy = Calendar.getInstance();
+        hoy.set(Calendar.HOUR_OF_DAY, 0);
+        hoy.set(Calendar.MINUTE, 0);
+        hoy.set(Calendar.SECOND, 0);
+        hoy.set(Calendar.MILLISECOND, 0);
+        long inicio = hoy.getTimeInMillis();
+        long fin = inicio + (24L * 60 * 60 * 1000) - 1;
+
         executor.execute(() ->{
-            int total = db.tareaDao().contarTodas(usuarioId);
-            int completadas = db.tareaDao().contarCompletadas(usuarioId);
-            tareaActual = db.tareaDao().obtenerTareaActual(usuarioId);
+            int total = db.tareaDao().contarTodasPorFecha(usuarioId, inicio, fin);
+            int completadas = db.tareaDao().contarCompletadasPorFecha(usuarioId, inicio, fin);
+            tareaActual = db.tareaDao().obtenerTareaActualPorFecha(usuarioId, inicio, fin);
             int porcentaje = 0;
             if(total > 0){
                 porcentaje = (completadas * 100) / total;
