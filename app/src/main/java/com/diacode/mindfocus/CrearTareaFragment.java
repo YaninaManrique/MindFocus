@@ -155,6 +155,15 @@ public class CrearTareaFragment extends Fragment{
             tarea.setHoraFin(horaFinMillis);
 
             long idTarea = db.tareaDao().insertar(tarea);
+            //alarma para notificar
+            requireActivity().runOnUiThread(() -> {
+                AlarmScheduler.programarRecordatorio(
+                        requireContext(),
+                        (int) idTarea,
+                        nombre,
+                        horaInicioMillis
+                );
+            });
             List<Paso> pasos = new ArrayList<>();
             for (int i = 0; i < layoutSteps.getChildCount(); i++) {
                 View item = layoutSteps.getChildAt(i);

@@ -21,6 +21,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -80,6 +81,8 @@ public class TimeFragment extends Fragment {
     private List<MaterialButton> botonesDiasStats = new ArrayList<>();
     private List<Calendar> fechasSemanaStats = new ArrayList<>();
     private int diaSeleccionadoStats = 0;
+    // variable para controlar la semana actual en visualización
+    private Calendar semanaPivot = Calendar.getInstance();
     //frase aleatorias
     private final String[] frases = {
             "💡 Cada tarea completada te acerca a tus objetivos. ¡Sigue avanzando!",
@@ -116,6 +119,19 @@ public class TimeFragment extends Fragment {
         donut.setSlices(datos);
 
         layoutDiasStats = view.findViewById(R.id.layout_dias_stats);
+
+        ImageButton btnSemanaAnterior = view.findViewById(R.id.btnSemanaAnterior);
+        ImageButton btnSemanaSiguiente = view.findViewById(R.id.btnSemanaSiguiente);
+        btnSemanaAnterior.setOnClickListener(v -> {
+            // restamos 7 días para ir a la semana pasada
+            semanaPivot.add(Calendar.DAY_OF_MONTH, -7);
+            generarChipsSemanaStats();
+        });
+        btnSemanaSiguiente.setOnClickListener(v -> {
+            // sumamos 7 días para ir a la semana que viene
+            semanaPivot.add(Calendar.DAY_OF_MONTH, 7);
+            generarChipsSemanaStats();
+        });
         generarChipsSemanaStats();
 
         MaterialButton btn = view.findViewById(R.id.btnExportarPdf);
@@ -141,6 +157,8 @@ public class TimeFragment extends Fragment {
         tvFrase = view.findViewById(R.id.tvFrase);
         Random random = new Random();
         tvFrase.setText(frases[random.nextInt(frases.length)]);
+
+
         //feccha actua;
 //        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
 //        String fecha = formato.format(new Date());
@@ -730,23 +748,31 @@ public class TimeFragment extends Fragment {
         fechasSemanaStats.clear();
 
         Calendar hoy = Calendar.getInstance();
-        int diaSemanaHoy = hoy.get(Calendar.DAY_OF_WEEK);
-        int offsetHastaLunes = (diaSemanaHoy == Calendar.SUNDAY) ? -6 : -(diaSemanaHoy - Calendar.MONDAY);
 
-        Calendar lunes = (Calendar) hoy.clone();
+        Calendar pivotAux = (Calendar) semanaPivot.clone();
+        int diaSemanaPivot = pivotAux.get(Calendar.DAY_OF_WEEK);
+        int offsetHastaLunes = (diaSemanaPivot == Calendar.SUNDAY) ? -6 : -(diaSemanaPivot - Calendar.MONDAY);
+
+        Calendar lunes = (Calendar) pivotAux.clone();
         lunes.add(Calendar.DAY_OF_MONTH, offsetHastaLunes);
         lunes.set(Calendar.HOUR_OF_DAY, 0);
         lunes.set(Calendar.MINUTE, 0);
         lunes.set(Calendar.SECOND, 0);
         lunes.set(Calendar.MILLISECOND, 0);
 
-        int indiceHoy = 0;
+        int indiceSeleccionar = 0;//por defecto el lunes
+        boolean estaEnSemanaActual = false;
+
         for (int i = 0; i < 7; i++) {
             Calendar diaCal = (Calendar) lunes.clone();
             diaCal.add(Calendar.DAY_OF_MONTH, i);
             fechasSemanaStats.add(diaCal);
 
-            if (esMismoDia(diaCal, hoy)) indiceHoy = i;
+            // si esta semana que estamos dibujando es la semana real actual, seleccionamos el día de "hoy"
+            if (esMismoDia(diaCal, hoy)) {
+                indiceSeleccionar = i;
+                estaEnSemanaActual = true;
+            }
 
             MaterialButton btnDia = new MaterialButton(requireContext(), null,
                     com.google.android.material.R.attr.materialButtonOutlinedStyle);
@@ -772,7 +798,7 @@ public class TimeFragment extends Fragment {
             layoutDiasStats.addView(btnDia);
             botonesDiasStats.add(btnDia);
         }
-        seleccionarDiaStats(indiceHoy);
+        seleccionarDiaStats(indiceSeleccionar);
     }
     private void seleccionarDiaStats(int index) {
         diaSeleccionadoStats = index;

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -50,6 +51,8 @@ public class TareasFragment extends Fragment {
     private List<Calendar> fechasSemana = new ArrayList<>();
     private int diaSeleccionado = 0; // índice dentro de fechasSemana
     private LinearLayout layoutDias;
+    // variable para controlar la semana actual en visualización
+    private Calendar semanaPivot = Calendar.getInstance();
     public TareasFragment() {}
 
     @Nullable
@@ -95,7 +98,21 @@ public class TareasFragment extends Fragment {
         });
         rvTareas.setLayoutManager(new LinearLayoutManager(requireContext()));
         rvTareas.setAdapter(adapter);
+
+        ImageButton btnSemanaAnterior = view.findViewById(R.id.btnSemanaAnterior);
+        ImageButton btnSemanaSiguiente = view.findViewById(R.id.btnSemanaSiguiente);
+        btnSemanaAnterior.setOnClickListener(v -> {
+            // restamos 7 días para ir a la semana pasada
+            semanaPivot.add(Calendar.DAY_OF_MONTH, -7);
+            generarChipsSemana();
+        });
+        btnSemanaSiguiente.setOnClickListener(v -> {
+            // sumamos 7 días para ir a la semana que viene
+            semanaPivot.add(Calendar.DAY_OF_MONTH, 7);
+            generarChipsSemana();
+        });
         generarChipsSemana();
+
         //ir a crear tareas
         btnAdd = view.findViewById(R.id.btn_add_task);
         btnAdd.setOnClickListener(new View.OnClickListener() {
@@ -115,22 +132,31 @@ public class TareasFragment extends Fragment {
         botonesDias.clear();
         fechasSemana.clear();
         Calendar hoy = Calendar.getInstance();
-        int diaSemanaHoy = hoy.get(Calendar.DAY_OF_WEEK);//1=Dom, 2=Lun ... 7=Sab
-        //indice 0=Lunes ... 6=Domingo
-        int offsetHastaLunes = (diaSemanaHoy == Calendar.SUNDAY) ? -6 : -(diaSemanaHoy - Calendar.MONDAY);
-        Calendar lunes = (Calendar) hoy.clone();
+
+        Calendar pivotAux = (Calendar) semanaPivot.clone();
+        int diaSemanaPivot = pivotAux.get(Calendar.DAY_OF_WEEK);
+        int offsetHastaLunes = (diaSemanaPivot == Calendar.SUNDAY) ? -6 : -(diaSemanaPivot - Calendar.MONDAY);
+
+        Calendar lunes = (Calendar) pivotAux.clone();
         lunes.add(Calendar.DAY_OF_MONTH, offsetHastaLunes);
         lunes.set(Calendar.HOUR_OF_DAY, 0);
         lunes.set(Calendar.MINUTE, 0);
         lunes.set(Calendar.SECOND, 0);
         lunes.set(Calendar.MILLISECOND, 0);
-        int indiceHoy = 0;
+
+        int indiceSeleccionar = 0;//por defecto el lunes
+        boolean estaEnSemanaActual = false;
+
         for (int i = 0; i < 7; i++) {
             Calendar diaCal = (Calendar) lunes.clone();
             diaCal.add(Calendar.DAY_OF_MONTH, i);
             fechasSemana.add(diaCal);
 
-            if (esMismoDia(diaCal, hoy)) indiceHoy = i;
+            // si esta semana que estamos dibujando es la semana real actual, seleccionamos el día de "hoy"
+            if (esMismoDia(diaCal, hoy)) {
+                indiceSeleccionar = i;
+                estaEnSemanaActual = true;
+            }
 
             MaterialButton btn = new MaterialButton(requireContext(), null,
                     com.google.android.material.R.attr.materialButtonOutlinedStyle);
@@ -162,7 +188,7 @@ public class TareasFragment extends Fragment {
             botonesDias.add(btn);
         }
 
-        seleccionarDia(indiceHoy);
+        seleccionarDia(indiceSeleccionar);
     }
 
     private void seleccionarDia(int index) {

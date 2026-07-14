@@ -16,7 +16,7 @@
             android:orientation="vertical"
             android:paddingHorizontal="20dp"
             android:paddingTop="16dp"
-            android:paddingBottom="16dp">
+            android:paddingBottom="10dp">
 
             <!-- HEADER: título + botón  -->
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -55,7 +55,40 @@
                     style="@style/Widget.MaterialComponents.Button.Icon"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+            <!-- SEMANA -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="16dp"
+                android:layout_marginTop="10dp">
+                <ImageButton
+                    android:id="@+id/btnSemanaAnterior"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/ic_chevron_left"
+                    android:contentDescription="Semana Anterior" />
+                <TextView
+                    android:id="@+id/tvSemana"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Semanas"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:textColor="@color/text_primary" />
+                <ImageButton
+                    android:id="@+id/btnSemanaSiguiente"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/ic_chevron_right"
+                    android:contentDescription="Semana Siguiente" />
 
+            </LinearLayout>
             <!-- FILTROS: dias de la semana -->
             <LinearLayout
                 android:id="@+id/layout_dias"
